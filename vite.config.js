@@ -16,7 +16,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/api': 'https://web3-assignment1.onrender.com', //URL of API's
+      '/api': 'https://web3-assignment1.onrender.com',
     },
   },
 })

@@ -1,13 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import Example from "./Modal";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/scss/modal';
+// import 'bootstrap/scss/buttons';
+// import 'bootstrap/scss/transitions';
+
 
 
 const Artist = () => {    
     const navigate = useNavigate();
 
+    const handleSignintoLoginScreen = (event) => {
+        event.preventDefault();
+        navigate("/");
+    };
+
     const [artist, setArtist] = useState([]);
     const[selectedArtist, setSelectedArtist] = useState(null)
     const[artistPaintings, setArtistPaintings] = useState([]);
+
 
     //TESTING IF ONCLICK USE THE SETTER
     const Col2Update =(singleArtist) => {
@@ -81,27 +93,27 @@ const Artist = () => {
     return (
         <>
             <div>
-                <div Class="bg-gray-800 text-white text-center p-4 text-xl">
-                    <div Class="flex flex-row">
-                        <div Class="bg-purple-500 basis-xs m-8">Logo</div>
-                        <div Class="bg-purple-500 basis-xs m-8">Art DashBoard</div>
-                        <div Class="bg-purple-500 basis-xs m-8">Artist</div>
-                        <div Class="bg-purple-500 basis-xs m-8">Paintings</div>
-                        <div Class="bg-purple-500 basis-xs m-8">Galleries</div>
-                        <div Class="bg-purple-500 basis-xs m-8">Genres</div>
-                        <div Class="bg-purple-500 basis-xs m-8">Favourites</div>
-                        <div Class="bg-purple-500 basis-xs m-8">Above</div>
+                <div className="bg-gray-800 text-white text-center p-4 text-xl">
+                    <div className="flex flex-row">
+                        <div className="bg-purple-500 basis-xs m-8" onClick={handleSignintoLoginScreen}>Logo/MAIN SCRFEN4NOW</div>
+                        <div className="bg-purple-500 basis-xs m-8">Art DashBoard</div>
+                        <div className="bg-purple-500 basis-xs m-8">Artist</div>
+                        <div className="bg-purple-500 basis-xs m-8">Paintings</div>
+                        <div className="bg-purple-500 basis-xs m-8">Galleries</div>
+                        <div className="bg-purple-500 basis-xs m-8">Genres</div>
+                        <div className="bg-purple-500 basis-xs m-8">Favourites</div>
+                        <div className="bg-purple-500 basis-xs m-8">Above</div>
                     </div>
                 </div>
             </div>
 
 
             {/* COLUMN 1 */}
-            <div Class="flex h-[calc(100vh-4rem)]">
-                <div Class="w-1/6 bg-red-400 flex items-center justify-center text-white text-xl overflow-auto " >
+            <div className="flex h-[calc(100vh-4rem)]">
+                <div className="w-1/6 bg-red-400 flex items-center justify-center text-white text-xl overflow-auto " >
                     <div>
                         {sortedArtist.map((art, index) => (
-                                <div Class="hover:bg-sky-700 cursor-pointer" key={index} >
+                                <div className="hover:bg-sky-700 cursor-pointer" key={index} >
                                     <h5  onClick={() => { Col2Update(art)}} >
                                         {art.FirstName}, {art.LastName}
                                     </h5>
@@ -111,17 +123,17 @@ const Artist = () => {
                 </div>
 
                 {/* COLUMN 2 */}
-                <div Class="w-2/6 bg-green-400 flex justify-center text-white text-xl">
+                <div className="w-2/6 bg-green-400 flex justify-center text-white text-xl">
                     <div>
                         
                         <div>
-                            <div Class="bg-purple-500 basis-xs m-1 text-center">Add To Favourites</div>
+                            <div className="bg-purple-500 basis-xs m-1 text-center">Add To Favourites</div>
                         </div>
 
                         {selectedArtist ? (
-                            <h5 Class="text-black">
+                            <h5 className="text-black">
                                 <b>FirstName:</b> {selectedArtist.FirstName} <br/>
-                                <b>LastName: </b> {selectedArtist.museumLinkastName} <br/>
+                                <b>LastName: </b> {selectedArtist.LastName} <br/>
                                 <b>Nationality:</b> {selectedArtist.Nationality} <br/>
                                 <b>Gender:</b> {selectedArtist.Gender} <br/>
                                 <b>YearOfBirth:</b> {selectedArtist.YearOfBirth}<br/>
@@ -136,13 +148,13 @@ const Artist = () => {
 
 
                 {/* COLUM<N3 */}
-                <div Class="w-3/6 bg-blue-400 flex justify-center text-white text-xl">
+                <div className="w-3/6 bg-blue-400 flex justify-center text-white text-xl">
                     <div>
         
-                        <div Class="bg-purple-500 basis-xs m-1 text-center">Add To Favourites</div>
+                        <div className="bg-purple-500 basis-xs m-1 text-center">Add To Favourites</div>
 
                         <div>
-                            <div Class=" basis-xs m-1 text-center">All Paintings of Artist</div> 
+                            <div className=" basis-xs m-1 text-center">All Paintings of Artist</div> 
                             <br/>
                         </div>
 
@@ -150,7 +162,7 @@ const Artist = () => {
                         <div>
 
                             {sortedPaintings.map((paintings, index) => (
-                                <div Class="hover:bg-sky-700 cursor-pointer" key={index}>
+                                <div className="hover:bg-sky-700 cursor-pointer" key={index}>
                                     <h3>
                                         {paintings.Title} <br/>
                                     </h3>
@@ -173,7 +185,7 @@ const Artist = () => {
             
 
             </div>
-            <div Class="bg-gray-800 text-white text-center p-4 text-xl">FOOTSIE STUFF </div>
+            <div className="bg-gray-800 text-white text-center p-4 text-xl">FOOTSIE STUFF </div>
         </>
     )
 
