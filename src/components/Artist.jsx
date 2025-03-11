@@ -146,7 +146,7 @@ const Artist = () => {
                             <br/>
                         </div>
 
-                        {/* SHOULD BRING UP MODAL */}
+                        {/* SHOULD BRING UP PAINTING MODAL */}
                         <div>
 
                             {sortedPaintings.map((paintings, index) => (
