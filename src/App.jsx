@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginScreen />} />
         <Route path="/Gallery" element={<Gallery />} />
-        <Route path="/Painting" element={<Painting />} />
+        <Route path="/Paintings" element={<Painting />} />
         <Route path="/Artist" element={<Artist />} />
       </Routes>
     </BrowserRouter>

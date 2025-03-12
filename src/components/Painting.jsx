@@ -8,6 +8,8 @@ const Gallery = () => {
         navigate("/");
     }
 
+
+
     const [data, setData] = useState(null);
       
     useEffect(() => {

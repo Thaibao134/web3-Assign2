@@ -9,21 +9,8 @@ const LoginScreen = () => {
     };
     
     
-    const handleSignintoGallery = (event) => {
-        event.preventDefault();
-        navigate("/Gallery");
-    };
-
-
-    const handleSignintoArtist = (event) => {
-        event.preventDefault();
-        navigate("/Artist");
-    };
-    
     return (
         <div className="h-screen w-screen bg-[url('../src/assets/bharath-kumar-cA9HLrY2FC8-unsplash.jpg')] bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center">
-            <button onClick={handleSignintoGallery} className="mb-2 p-2 bg-white rounded">Gallery</button>
-            <button onClick={handleSignintoArtist} className="mb-2 p-2 bg-white rounded">Artist</button>
       
             <div className="w-full max-w-sm mx-auto overflow-hidden bg-gray-100 rounded-lg p-4">
                 
