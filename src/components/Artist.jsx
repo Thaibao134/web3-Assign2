@@ -1,11 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import Example from "./Modal";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/scss/modal';
-// import 'bootstrap/scss/buttons';
-// import 'bootstrap/scss/transitions';
-
+import NavBar from "./NavBar";
+import ArtistList from "./ArtistList"
 
 
 const Artist = () => {    
@@ -21,11 +17,11 @@ const Artist = () => {
     const[artistPaintings, setArtistPaintings] = useState([]);
 
 
-    //TESTING IF ONCLICK USE THE SETTER
-    const Col2Update =(singleArtist) => {
+    const onSelectedArtist =(singleArtist) => {
         console.log(singleArtist);
         setSelectedArtist(singleArtist)
     }
+
 
     //Run if a selected painting has been changed
     useEffect(() => {
@@ -87,40 +83,19 @@ const Artist = () => {
         fetchData();
     }, []);
 
-    const sortedArtist = artist.sort((a, b) => a.LastName.localeCompare(b.LastName));
+   
     const sortedPaintings = artistPaintings.sort((a, b) => a.Title.localeCompare(b.Title));
 
     return (
         <>
-            <div>
-                <div className="bg-gray-800 text-white text-center p-4 text-xl">
-                    <div className="flex flex-row">
-                        <div className="bg-purple-500 basis-xs m-8" onClick={handleSignintoLoginScreen}>Logo/MAIN SCRFEN4NOW</div>
-                        <div className="bg-purple-500 basis-xs m-8">Art DashBoard</div>
-                        <div className="bg-purple-500 basis-xs m-8">Artist</div>
-                        <div className="bg-purple-500 basis-xs m-8">Paintings</div>
-                        <div className="bg-purple-500 basis-xs m-8">Galleries</div>
-                        <div className="bg-purple-500 basis-xs m-8">Genres</div>
-                        <div className="bg-purple-500 basis-xs m-8">Favourites</div>
-                        <div className="bg-purple-500 basis-xs m-8">Above</div>
-                    </div>
-                </div>
-            </div>
 
+            {/* DISPLAY NAV BAR */}
+            <NavBar/>
 
-            {/* COLUMN 1 */}
+            {/* COLUMN 1 THAT DISPLAYS THE ARTIST LIST */}
             <div className="flex h-[calc(100vh-4rem)]">
-                <div className="w-1/6 bg-red-400 flex items-center justify-center text-white text-xl overflow-auto " >
-                    <div>
-                        {sortedArtist.map((art, index) => (
-                                <div className="hover:bg-sky-700 cursor-pointer" key={index} >
-                                    <h5  onClick={() => { Col2Update(art)}} >
-                                        {art.FirstName}, {art.LastName}
-                                    </h5>
-                                </div>
-                            ))}
-                    </div>
-                </div>
+                <ArtistList artists={artist} onSelectedArtist={onSelectedArtist}/>
+
 
                 {/* COLUMN 2 */}
                 <div className="w-2/6 bg-green-400 flex justify-center text-white text-xl">
@@ -183,9 +158,10 @@ const Artist = () => {
 
 
             
+                </div>
 
-            </div>
             <div className="bg-gray-800 text-white text-center p-4 text-xl">FOOTSIE STUFF </div>
+
         </>
     )
 
