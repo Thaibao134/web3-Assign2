@@ -107,7 +107,7 @@ const Artist = () => {
                 <ArtistDetails selectedArtist={selectedArtist}/>
 
                 {/* COLUMN 3 THAT DISPLAYS ALL ARTIST PAINTINGS */}
-                <PaintingList Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange}/>
+                <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange}/>
             </div>
 
             <Footer/>

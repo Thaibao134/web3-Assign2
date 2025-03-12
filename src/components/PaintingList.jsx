@@ -1,5 +1,5 @@
 
-const PaintingList = ({Paintings,filterOption,handleFilterChange}) => { //ARTIST
+const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //ARTIST
 
     let sortedPaintings = Paintings.sort((a, b) => a.Title.localeCompare(b.Title));
 
@@ -24,6 +24,16 @@ const PaintingList = ({Paintings,filterOption,handleFilterChange}) => { //ARTIST
     }
 
 
+    const test = (painting) => {
+        if (view !== "Artist") {
+            return (
+                <>
+                {painting.ArtistName} <br />
+              </>
+            );
+        } 
+    }
+
     // YOU NEED TO FIX THE FILTERING AND OTHERS AFTER. GENRE GALLERY ARTIST WILL BE PASSTING TO THIS SINGLEW JSX
     return (
         <div className="w-3/6 bg-blue-400 flex justify-center text-white text-xl">
@@ -46,7 +56,9 @@ const PaintingList = ({Paintings,filterOption,handleFilterChange}) => { //ARTIST
                                 <div className="flex justify-center max-w-full h-auto ">
                                     <img src={`https://res.cloudinary.com/funwebdev/image/upload/w_400/art/paintings/square/${paintings.ImageFileName}.jpg`}></img>
                                 </div>
-                                {paintings.ArtistName} <br />
+                                    {test(paintings)}
+                                    
+                                {/* {paintings.ArtistName} <br /> */}
                                 {paintings.Title} <br />
 
                                 {/* ONLY FOR GALLERY */}

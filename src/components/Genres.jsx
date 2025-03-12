@@ -11,6 +11,11 @@ const Genres = () => {
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState(null)
     const [genrePaintings, setGenrePaintings] = useState([])
+    const [filterOption, setFilterOption] = useState("Title")
+
+    const handleFilterChange = (filterType) => {
+        setFilterOption(filterType);
+    };
 
 
     const onSelectedGenre = (selectedGenre) => {
@@ -59,10 +64,8 @@ const Genres = () => {
             const PaintingData = data.map((item) => ({
                 PaintingID: item.paintingId,
                 Title: item.title,
-                YearOfWork: item.yearofWork,
-                ArtistName: "NEED TO UPDATE NAME",
-                THUMBNAIL: "NEED TO UPDATE THUMBNAIL",
-                // Need to update api retrieval
+                YearofWork: item.yearOfWork,
+                ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
                 ImageFileName: `${item.imageFileName}`.padStart(6, 0),
 
             }));
@@ -87,7 +90,7 @@ const Genres = () => {
 
                 <GenreDetails selectedGenre={selectedGenre} />
 
-                <PaintingList Paintings={genrePaintings}/>
+                <PaintingList Paintings={genrePaintings} filterOption={filterOption} handleFilterChange={handleFilterChange}/>
             </div>
             <Footer />
         </>
