@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import logoImage from '../assets/logoipsum-338.svg'
 
 const LoginScreen = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const LoginScreen = () => {
                 
               
                 <div className="flex flex-col items-center justify-center bg-gray-100">
-                    <img src="../src/assets/logoipsum-338.svg" alt="Logo" className="w-24 h-auto mb-6"/>
+                    <img src={logoImage} alt="Logo" className="w-24 h-auto mb-6"/>
                 </div>
 
                 <div className="flex flex-col text-center mb-4">

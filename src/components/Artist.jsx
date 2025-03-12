@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import NavBar from "./NavBar";
 import ArtistList from "./ArtistList"
@@ -70,6 +69,7 @@ const Artist = () => {
             const data = await response.json();
 
             const PaintingData = data.map((item) => ({
+                PaintingID: item.paintingId,
                 Title: item.title,
                 ImageFileName: `${item.imageFileName}`.padStart(6, 0),
                 ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
@@ -91,12 +91,15 @@ const Artist = () => {
     };
 
 
+
     return (
         <>
             {/* DISPLAY NAV BAR */}
             <NavBar/>
+            {/* <div className="flex h-[calc(100vh-4rem)]"> */}
 
-            <div className="flex h-[calc(100vh-4rem)]">
+            
+            <div className="flex h-screen">
                 {/* COLUMN 1 THAT DISPLAYS THE ARTIST LIST */}
                 <ArtistList artists={artist} onSelectedArtist={onSelectedArtist}/>
 
@@ -104,7 +107,7 @@ const Artist = () => {
                 <ArtistDetails selectedArtist={selectedArtist}/>
 
                 {/* COLUMN 3 THAT DISPLAYS ALL ARTIST PAINTINGS */}
-                <PaintingList artistPaintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange}/>
+                <PaintingList Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange}/>
             </div>
 
             <Footer/>

@@ -8,7 +8,6 @@ import Painting from './components/Painting'
 import Artist from './components/Artist'
 
 
-
 function App() {
   return (
     <BrowserRouter>
