@@ -1,14 +1,14 @@
 const DisplayModal = ({painting}) => {
     return (
         <>
-            <div className="grid grid-cols-2 justify-items-center">
+            <div className="grid grid-cols-2 w-full">
                 
-                <div className="flex items-center">
+                <div className="flex justify-center items-center w-full ">
                     <img src={`https://res.cloudinary.com/funwebdev/image/upload/w_400/art/paintings/square/${painting.ImageFileName}.jpg`}></img>
                 </div>
                 
             
-                <div className="">
+                <div className="w-full break-words">
                     <b>Painting Title:</b> {painting.Title} <br />
                     <b>ArtistName:</b> {painting.ArtistName} <br />
                     <b>YearOfWork:</b> {painting.YearOfWork} <br />
