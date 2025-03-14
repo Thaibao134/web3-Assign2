@@ -64,7 +64,7 @@ const Genres = () => {
             const PaintingData = data.map((item) => ({
                 PaintingID: item.paintingId,
                 Title: item.title,
-                YearofWork: item.yearOfWork,
+                YearOfWork: item.yearOfWork,
                 ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
                 ImageFileName: `${item.imageFileName}`.padStart(6, 0),
 

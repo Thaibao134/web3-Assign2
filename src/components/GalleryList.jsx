@@ -6,9 +6,9 @@ const GalleryList = ({galleries, onSelectedGallery}) => {
             <div>
                 {galleries.map((gallery, index) => (
                     <div className="hover:bg-sky-700 cursor-pointer" key={index}>
-                        <h1 onClick={() => { onSelectedGallery(gallery) }}>
+                        <h5 onClick={() => { onSelectedGallery(gallery) }}>
                             {gallery.Name}
-                        </h1>
+                        </h5>
                     </div>
                 ))}
             </div>

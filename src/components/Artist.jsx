@@ -73,16 +73,16 @@ const Artist = () => {
                 Title: item.title,
                 ImageFileName: `${item.imageFileName}`.padStart(6, 0),
                 ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
-                YearofWork: item.yearOfWork,
+                YearOfWork: item.yearOfWork,
                 Medium: item.medium,
                 Width: item.width,
                 Height: item.height,
                 GalleryName: item.galleries.galleryName,
-                GaleryCity: item.galleries.galleryCity,
+                GalleryCity: item.galleries.galleryCity,
                 MuseumLink: item.museumLink,
                 WikiLink: item.wikiLink,
                 Description: item.description,
-                CopyrightText: item.copyrightText,
+                CopyRightText: item.copyrightText,
             }));
             setArtistPaintings(PaintingData);
         } catch (error) {

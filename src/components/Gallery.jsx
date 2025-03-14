@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import GalleryList from "./GalleryList.jsx";
 import GalleryDetails from "./GalleryDetails.jsx";
 import PaintingList from "./PaintingList.jsx";
+import Example from './Modal.jsx';
 
 
 const Gallery = () => {    
@@ -71,7 +72,7 @@ const Gallery = () => {
                 Title: item.title,
                 ImageFileName: `${item.imageFileName}`.padStart(6,0),
                 ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
-                YearofWork: item.yearOfWork
+                YearOfWork: item.yearOfWork
             }));
             setGalleryPaintings(galleryPaintings);
         } catch (error) {

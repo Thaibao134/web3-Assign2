@@ -1,35 +1,28 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import DisplayModal from './DisplayModal.jsx';
 import Modal from 'react-bootstrap/Modal';
 
-function Example() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+function ModalPopup({show, handleClose, painting}) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}
+        size="xl"
+      >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Painting Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <DisplayModal painting={painting}/>
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
+          <Button variant="secondary" onClick={handleClose}> Close </Button>
+          <Button variant="primary" onClick={handleClose}>Save Changes </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
 
-export default Example;
+export default ModalPopup;

@@ -1,5 +1,17 @@
+import ModalPopup from "./Modal";
+import { useState } from "react";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //ARTIST
+
+    const [showModal, setShowModal] = useState(false);
+    const [selectedPainting, setSelectedPainting] = useState(null);
+
+    const handleImageClick = (painting) => {
+        setSelectedPainting(painting);
+        setShowModal(true);
+    };
 
     let sortedPaintings = Paintings.sort((a, b) => a.Title.localeCompare(b.Title));
 
@@ -54,7 +66,7 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //
                         <div className="hover:bg-sky-700 cursor-pointer " key={index}>
                             <div className="m-3 p-2 border-black border-2 overflow-auto flex flex-col text-center overflow">
                                 <div className="flex justify-center max-w-full h-auto ">
-                                    <img src={`https://res.cloudinary.com/funwebdev/image/upload/w_400/art/paintings/square/${paintings.ImageFileName}.jpg`}></img>
+                                    <img src={`https://res.cloudinary.com/funwebdev/image/upload/w_400/art/paintings/square/${paintings.ImageFileName}.jpg`} onClick={() => handleImageClick(paintings)}></img>
                                 </div>
                                     {test(paintings)}
                                     
@@ -62,12 +74,14 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //
                                 {paintings.Title} <br />
 
                                 {/* ONLY FOR GALLERY */}
-                                {paintings.YearofWork} <br /> 
+                                {paintings.YearOfWork} <br /> 
                             </div>
                         </div>
                     ))}
                 </div>
 
+    
+                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} />}
 
             </div>
         </div>
