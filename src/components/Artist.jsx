@@ -98,16 +98,17 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
             <NavBar/>
             {/* <div className="flex h-[calc(100vh-4rem)]"> */}
 
-            
-            <div className="flex h-screen">
-                {/* COLUMN 1 THAT DISPLAYS THE ARTIST LIST */}
-                <ArtistList artists={artist} onSelectedArtist={onSelectedArtist}/>
+            <div className="bg-[#e8a9a0] py-4">
+                <div className="flex h-screen m-16 ">
+                    {/* COLUMN 1 THAT DISPLAYS THE ARTIST LIST */}
+                    <ArtistList artists={artist} onSelectedArtist={onSelectedArtist}/>
 
-                {/* COLUMN 2 THAT DISPLAYS THE ARTIST DETAILS */}
-                <ArtistDetails selectedArtist={selectedArtist} onAddFavArtist={onAddFavArtist}/>
+                    {/* COLUMN 2 THAT DISPLAYS THE ARTIST DETAILS */}
+                    <ArtistDetails selectedArtist={selectedArtist} onAddFavArtist={onAddFavArtist}/>
 
-                {/* COLUMN 3 THAT DISPLAYS ALL ARTIST PAINTINGS */}
-                <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
+                    {/* COLUMN 3 THAT DISPLAYS ALL ARTIST PAINTINGS */}
+                    <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
+                </div>
             </div>
 
             <Footer/>

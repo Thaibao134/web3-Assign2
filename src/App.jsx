@@ -8,6 +8,7 @@ import Painting from './components/Painting'
 import Artist from './components/Artist'
 import Genres from './components/Genres';
 import Favourites from './components/Favourites';
+import ModalPopup from './components/Modal';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/Paintings" element={<Painting onAddFavPainting={handleAddFavPaintings} />} />
         <Route path="/Gallery" element={<Gallery onAddFavGallery={handleAddFavGallery} onAddFavPainting={handleAddFavPaintings}/>} />
         <Route path="/Genres" element={<Genres onAddFavPainting={handleAddFavPaintings} />} />
+
         <Route path="/Favourites" element={<Favourites favouriteArtists={favouriteArtists} favouriteGallery={favouriteGalleries} favouritePaintings={favouritePaintings}/>} />
       </Routes>
     </BrowserRouter>

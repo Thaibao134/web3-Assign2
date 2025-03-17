@@ -7,7 +7,10 @@ import Favourites from './Favourites.jsx';
 function ModalPopup({show, handleClose, painting, onAddFavPainting}) {
 
   return (
+
+
     <>
+    
       <Modal show={show} onHide={handleClose}
         size="xl"
       >

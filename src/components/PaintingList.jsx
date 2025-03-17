@@ -48,17 +48,17 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFav
 
     // YOU NEED TO FIX THE FILTERING AND OTHERS AFTER. GENRE GALLERY ARTIST WILL BE PASSTING TO THIS SINGLEW JSX
     return (
-        <div className="w-3/6 bg-blue-400 flex justify-center text-white text-xl">
+        <div className="w-3/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0] ">
             <div>
 
                 {/* <div className="mb-2 bg-purple-500 basis-xs text-center">Add To Favourites</div> */}
 
                 {/* <div className=" basis-xs text-center">All Paintings of Artist</div> */}
 
-                <div className="flex justify-center gap-15">
-                    <button className=" mb-1 p-1 border-black border-2 rounded bg-gray-400" onClick={() => handleFilterChange("Name")}>Artist Name</button>
-                    <button className=" mb-1 p-1 border-black border-2 rounded bg-gray-400" onClick={() => handleFilterChange("Title")}>Title</button>
-                    <button className=" mb-1 p-1 border-black border-2 rounded bg-gray-400" onClick={() => handleFilterChange("Year")}>Year</button>
+                <div className="flex justify-center gap-15 m-4 ">
+                    <button className=" mb-1 p-1 border-black border-2 rounded bg-blue-400" onClick={() => handleFilterChange("Name")}>Artist Name</button>
+                    <button className=" mb-1 p-1 border-black border-2 rounded bg-blue-400" onClick={() => handleFilterChange("Title")}>Title</button>
+                    <button className=" mb-1 p-1 border-black border-2 rounded bg-blue-400" onClick={() => handleFilterChange("Year")}>Year</button>
                 </div>
 
                 <div  className="overflow-y-auto max-h-[calc(100vh-10rem)]">
@@ -81,7 +81,7 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFav
                 </div>
 
     
-                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting} />}
+                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting}  />}
 
             </div>
         </div>

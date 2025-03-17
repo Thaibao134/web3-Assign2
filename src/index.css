@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* In index.css or global CSS file */
+/* https://coolors.co/gradient-maker/ed71ad-7277f1    CODE TAKEN FROM HERE*/
+.bg-gradient-custom {
+  background: linear-gradient(90deg, hsla(331, 78%, 69%, 1) 0%, hsla(238, 82%, 70%, 1) 100%);
+}
+
+root {
+  background-color: #f4f4f4;
+}
+
 
 
 /*

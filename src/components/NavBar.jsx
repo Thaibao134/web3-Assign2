@@ -12,13 +12,23 @@ const NavBar = () => {
     };
 
     return(
-        <div className="bg-gray-800 text-white text-center p-4 text-xl">
-            <div className="flex flex-row">
+        <div className="bg-[#333333] text-white text-center">
+
+            <div className="flex justify-center items-center"> 
+                <img src="../src/assets/test111.png" className="max-w-[350px] mt-4"></img>
+            </div>
+
+            <div className="flex justify-center items-center p-4">
             {["Art Dashboard", "Artist", "Paintings", "Gallery", "Genres", "Favourites", "Logout"].map((item, index) => (
-                    <div key={index} className="bg-purple-500 basis-xs m-8" onClick={() =>handleNavigations(item) }>{item}</div>
+                    <div key={index} className="mx-4 cursor-pointer text-2xl" onClick={() =>handleNavigations(item) }>{item}</div>
                 ))}
             </div>
+            
         </div>
+        
+
+
+
     )
 
 
