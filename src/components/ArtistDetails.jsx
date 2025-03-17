@@ -1,9 +1,15 @@
-const ArtistDetails = ({selectedArtist}) => {
+import { useState } from "react";
+import Favourites from "./Favourites";
+
+const ArtistDetails = ({selectedArtist, onAddFavArtist}) => {
+
     return (
         <div className="w-2/6 bg-green-400 flex justify-center text-white text-xl">
             <div>
                 <div>
-                    <div className="bg-purple-500 basis-xs m-1 text-center">Add To Favourites</div>
+                    <div className="bg-purple-500 basis-xs m-1 text-center">
+                        <button onClick={() => onAddFavArtist(selectedArtist)}> Add To Favourites</button>
+                    </div>
                 </div>
 
                 {selectedArtist ? (
@@ -18,10 +24,11 @@ const ArtistDetails = ({selectedArtist}) => {
                         <b>ArtistLink:</b> {selectedArtist.ArtistLink} <br />
                     </h5>
                 ) : ("SELECT ARTIST TO DISPLAY DETAILS")}
+
+
             </div>
         </div>
     )
 }
-
 
 export default ArtistDetails

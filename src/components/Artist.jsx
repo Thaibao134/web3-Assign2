@@ -6,7 +6,7 @@ import PaintingList from "./PaintingList";
 import Footer from "./Footer";
 
 
-const Artist = () => {
+const Artist = ({onAddFavArtist, onAddFavPainting}) => {
     // Filter title, year, or paintingID
     const handleFilterChange = (filterType) => {
         setFilterOption(filterType);
@@ -104,10 +104,10 @@ const Artist = () => {
                 <ArtistList artists={artist} onSelectedArtist={onSelectedArtist}/>
 
                 {/* COLUMN 2 THAT DISPLAYS THE ARTIST DETAILS */}
-                <ArtistDetails selectedArtist={selectedArtist}/>
+                <ArtistDetails selectedArtist={selectedArtist} onAddFavArtist={onAddFavArtist}/>
 
                 {/* COLUMN 3 THAT DISPLAYS ALL ARTIST PAINTINGS */}
-                <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange}/>
+                <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
             </div>
 
             <Footer/>

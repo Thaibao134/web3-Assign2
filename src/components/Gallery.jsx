@@ -7,7 +7,7 @@ import PaintingList from "./PaintingList.jsx";
 import Example from './Modal.jsx';
 
 
-const Gallery = () => {    
+const Gallery = ({onAddFavGallery, onAddFavPainting}) => {    
 
     const handleFilterChange = (filterType) => {
         setFilterOption(filterType);
@@ -91,10 +91,10 @@ const Gallery = () => {
                 <GalleryList galleries={galleries} onSelectedGallery={onSelectedGallery}/>
 
                 {/* Column 2 */}
-                <GalleryDetails selectedGallery={selectedGallery}/>
+                <GalleryDetails selectedGallery={selectedGallery} onAddFavGallery={onAddFavGallery}/>
 
                 {/* Column 3 */}
-                <PaintingList Paintings={galleryPaintings} filterOption={filterOption} handleFilterChange={handleFilterChange}/>
+                <PaintingList Paintings={galleryPaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
             </div>
 
             <Footer/>

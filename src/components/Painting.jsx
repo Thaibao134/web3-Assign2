@@ -5,7 +5,7 @@ import ModalPopup from './Modal';
 
 
 
-const Gallery = () => {    
+const Paintings = ({onAddFavPainting}) => {    
 
     const [data, setData] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState("");
@@ -140,7 +140,7 @@ const Gallery = () => {
                                 <label htmlFor="Artist" className='w-35'>Artist: </label>
                                 
                                 
-                                <input className={`border-solid bolrder-black border-2 m-2 ${selectedFilter !== "Artist" ? "bg-gray-200" : " "}`} type="text" id="Artist" name="filter" disabled={selectedFilter !== "Artist"} value={selectedArtist} onChange={(e) => setSelectedArtist(e.target.value)}/>
+                                <input className={`border-solid border-black border-2 m-2 ${selectedFilter !== "Artist" ? "bg-gray-200" : " "}`} type="text" id="Artist" name="filter" disabled={selectedFilter !== "Artist"} value={selectedArtist} onChange={(e) => setSelectedArtist(e.target.value)}/>
                                 
                             </div>
 
@@ -193,7 +193,7 @@ const Gallery = () => {
                     </div>
                     
                 </h1>
-                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} />}
+                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting}/>}
 
             </div>
             <Footer/>
@@ -202,4 +202,4 @@ const Gallery = () => {
     );
 }
 
-export default Gallery;
+export default Paintings;

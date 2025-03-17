@@ -1,11 +1,13 @@
 import Map from "./Mapping";
 
-const GalleryDetails = ({selectedGallery}) => {
+const GalleryDetails = ({selectedGallery, onAddFavGallery}) => {
     return (
         <div className="w-2/6 bg-green-400 flex justify-center text-white text-xl">
             <div>
                 <div>
-                    <div className="bg-purple-500 basis-xs m-1 text-center">Add To Favourites</div>
+                    <div className="bg-purple-500 basis-xs m-1 text-center">
+                        <button onClick={() => onAddFavGallery(selectedGallery)}>Add To Favourites</button>
+                    </div>
                 </div>
 
                 {selectedGallery ? (

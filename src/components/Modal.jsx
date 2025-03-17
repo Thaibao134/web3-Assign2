@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import DisplayModal from './DisplayModal.jsx';
 import Modal from 'react-bootstrap/Modal';
+import Favourites from './Favourites.jsx';
 
-function ModalPopup({show, handleClose, painting}) {
+function ModalPopup({show, handleClose, painting, onAddFavPainting}) {
 
   return (
     <>
@@ -18,7 +19,7 @@ function ModalPopup({show, handleClose, painting}) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}> Close </Button>
-          <Button variant="primary" onClick={handleClose}>Save Changes </Button>
+          <Button variant="primary" onClick={() => {onAddFavPainting(painting), handleClose()}}>Add To Favourites </Button>
         </Modal.Footer>
       </Modal>
     </>

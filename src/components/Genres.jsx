@@ -6,7 +6,7 @@ import GenreDetails from './GenreDetails';
 import Footer from "./Footer";
 
 
-const Genres = () => {
+const Genres = ({onAddFavPainting}) => {
 
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState(null)
@@ -90,7 +90,7 @@ const Genres = () => {
 
                 <GenreDetails selectedGenre={selectedGenre} />
 
-                <PaintingList Paintings={genrePaintings} filterOption={filterOption} handleFilterChange={handleFilterChange}/>
+                <PaintingList Paintings={genrePaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
             </div>
             <Footer />
         </>

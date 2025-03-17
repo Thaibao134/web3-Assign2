@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //ARTIST
+const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFavPainting}) => { 
 
     const [showModal, setShowModal] = useState(false);
     const [selectedPainting, setSelectedPainting] = useState(null);
@@ -25,7 +25,7 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //
                 sortedPaintings = Paintings.sort((a, b) => a.Title.localeCompare(b.Title));
                 break;
             case 'Year':
-                sortedPaintings = Paintings.sort((a, b) => a.YearofWork - b.YearofWork);
+                sortedPaintings = Paintings.sort((a, b) => a.YearOfWork - b.YearOfWork);
                 break;
             case 'Name':
                 sortedPaintings = Paintings.sort((a, b) => a.ArtistName.localeCompare(b.ArtistName));
@@ -51,7 +51,7 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //
         <div className="w-3/6 bg-blue-400 flex justify-center text-white text-xl">
             <div>
 
-                <div className="mb-2 bg-purple-500 basis-xs text-center">Add To Favourites</div>
+                {/* <div className="mb-2 bg-purple-500 basis-xs text-center">Add To Favourites</div> */}
 
                 {/* <div className=" basis-xs text-center">All Paintings of Artist</div> */}
 
@@ -81,7 +81,7 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange}) => { //
                 </div>
 
     
-                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} />}
+                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting} />}
 
             </div>
         </div>
