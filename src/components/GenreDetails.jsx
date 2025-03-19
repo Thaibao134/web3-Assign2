@@ -1,4 +1,5 @@
 const GenreDetails = ({selectedGenre}) => {
+
     return (
         <div className="w-2/6 bg-green-400 flex justify-center text-white text-xl">
         <div>

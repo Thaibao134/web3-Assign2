@@ -1,12 +1,24 @@
 import Map from "./Mapping";
+import { useState } from "react";
 
 const GalleryDetails = ({selectedGallery, onAddFavGallery}) => {
+
+    const [FavouritePopup, setFavouritePopup] = useState(false)
+
+    const handleAddFavGallery = () => {
+        onAddFavGallery(selectedGallery)
+        setFavouritePopup(true)
+        setTimeout(() => {
+            setFavouritePopup(false);
+        }, 2500);
+    }
+
     return (
         <div className="w-2/6 bg-green-400 flex justify-center text-white text-xl">
             <div>
                 <div>
                     <div className="bg-purple-500 basis-xs m-1 text-center">
-                        <button onClick={() => onAddFavGallery(selectedGallery)}>Add To Favourites</button>
+                        <button onClick={handleAddFavGallery}>Add To Favourites</button>
                     </div>
                 </div>
 
@@ -24,6 +36,14 @@ const GalleryDetails = ({selectedGallery, onAddFavGallery}) => {
                     </h5>
                 ) : ("SELECT ARTIST TO DISPLAY DETAILS")}
             </div>
+
+
+            {FavouritePopup && (
+                    <div className="popup-message">
+                        Added to Favourites!
+                    </div>
+                )}
+
         </div>
     )
 }

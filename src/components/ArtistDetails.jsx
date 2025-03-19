@@ -13,6 +13,8 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
         }, 2500);
     }
 
+
+
     return (
         <div className="w-2/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0]">
             <div>
@@ -38,8 +40,14 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
                 ) : ("SELECT ARTIST TO DISPLAY DETAILS")}
 
                 {FavouritePopup && (
-                    <div className="text-black bg-white">Added to Favourites!</div>
+                    <div className="popup-message">
+                        Added to Favourites!
+                    </div>
                 )}
+
+
+
+
             </div>
 
 

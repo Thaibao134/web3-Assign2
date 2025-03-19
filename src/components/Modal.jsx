@@ -6,6 +6,9 @@ import Favourites from './Favourites.jsx';
 
 function ModalPopup({show, handleClose, painting, onAddFavPainting}) {
 
+
+
+
   return (
 
 

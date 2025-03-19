@@ -16,6 +16,7 @@ function App() {
   const [favouriteArtists, setFavouriteArtists] = useState([]);
   const [favouriteGalleries, setFavouriteGalleries] = useState([]);
   const [favouritePaintings, setFavouritePaintings] = useState([]);
+  
 
   const handleAddFavArtist = (artist) => {
     setFavouriteArtists(prevState => [...prevState, artist]);
