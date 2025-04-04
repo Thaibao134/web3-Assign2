@@ -18,7 +18,6 @@ function App() {
   const [favouritePaintings, setFavouritePaintings] = useState([]);
   
 
-
   const handleAddFavArtist = (artist) => {
     console.log(`APP SENDING: ${artist}`)
     setFavouriteArtists(prevState => 
@@ -40,6 +39,18 @@ function App() {
       prevState.includes(painting) ? prevState : [...prevState, painting]);
   };
 
+
+  const onDeleteItem = (item, column) => {
+    if (column === "Artist") {
+      setFavouriteArtists(prevArtists => prevArtists.filter(artist => artist !== item));
+    } else if (column === "Gallery") {
+      setFavouriteGalleries(prevGallery => prevGallery.filter(gallery => gallery !== item));
+    } else {
+      setFavouritePaintings(prevPainting => prevPainting.filter(painting => painting !== item));
+    }
+    
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -49,7 +60,7 @@ function App() {
         <Route path="/Gallery" element={<Gallery onAddFavGallery={handleAddFavGallery} onAddFavPainting={handleAddFavPaintings}/>} />
         <Route path="/Genres" element={<Genres onAddFavPainting={handleAddFavPaintings} />} />
 
-        <Route path="/Favourites" element={<Favourites favouriteArtists={favouriteArtists} favouriteGallery={favouriteGalleries} favouritePaintings={favouritePaintings}/>} />
+        <Route path="/Favourites" element={<Favourites favouriteArtists={favouriteArtists} favouriteGallery={favouriteGalleries} favouritePaintings={favouritePaintings} onDeleteItem={onDeleteItem}/>} />
       </Routes>
     </BrowserRouter>
   );
