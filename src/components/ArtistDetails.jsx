@@ -6,17 +6,18 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
     const [FavouritePopup, setFavouritePopup] = useState(false)
 
     const handleAddFavArtist = () => {
-        onAddFavArtist(selectedArtist)
+        onAddFavArtist(`${selectedArtist.FirstName} ${selectedArtist.LastName}`)
         setFavouritePopup(true)
         setTimeout(() => {
             setFavouritePopup(false);
-        }, 2500);
+        }, 2000);
     }
 
 
 
     return (
         <div className="w-2/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0]">
+        
             <div>
                 <div>
                     <div className="bg-blue-400 m-2 text-center w-auto py-2 m-4 rounded">

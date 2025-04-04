@@ -67,6 +67,18 @@ const Genres = ({onAddFavPainting}) => {
                 YearOfWork: item.yearOfWork,
                 ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
                 ImageFileName: `${item.imageFileName}`.padStart(6, 0),
+                Medium: item.medium,
+                Width: item.width,
+                Height: item.height,
+                GalleryName: item.galleries.galleryName,
+                GalleryCity: item.galleries.galleryCity,
+                MuseumLink: item.museumLink,
+                WikiLink: item.wikiLink,
+                Description: item.description,
+                CopyRightText: item.copyrightText
+
+
+
 
             }));
             setGenrePaintings(PaintingData);
@@ -83,14 +95,15 @@ const Genres = ({onAddFavPainting}) => {
         <>
             <NavBar />
 
-            {/* THIS CAUSES PROBLEMS */}
-            <div className="flex h-screen">
+            <div className="bg-[#e8a9a0] py-4">
+                <div className="flex h-screen m-16 ">
 
                 <GenreList genres={genres} onSelectedGenre={onSelectedGenre} />
 
                 <GenreDetails selectedGenre={selectedGenre} />
 
                 <PaintingList Paintings={genrePaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
+            </div>
             </div>
             <Footer />
         </>

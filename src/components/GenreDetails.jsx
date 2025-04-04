@@ -1,22 +1,28 @@
 const GenreDetails = ({selectedGenre}) => {
 
     return (
-        <div className="w-2/6 bg-green-400 flex justify-center text-white text-xl">
-        <div>
-            <div>
-                <div className="bg-purple-500 basis-xs m-1 text-center">Add To Favourites</div>
-            </div>
+        <div className="w-2/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0]">
 
-            {selectedGenre ? (
-                <h5 className="text-black">
-                    <b>Name:</b> {selectedGenre.GenreName} <br />
-                    <b>Description: </b> {selectedGenre.Description} <br />
-                    <b>Wiki Link:</b> {selectedGenre.WikiLink} <br />
-     
-                </h5>
-            ) : ("SELECT GENRE TO DISPLAY DETAILS")}
+            <div>
+
+
+
+                {selectedGenre ? (
+                    <h5 className="flex justify-center items-center h-full text-center">
+                        <div className="">
+                            <b>Name:</b> {selectedGenre.GenreName} <br />
+                            <b>Description: </b> {selectedGenre.Description} <br />
+                            <b>Wiki Link:</b> {selectedGenre.WikiLink} <br />
+                        </div>
+                    </h5>
+                ) : ("SELECT GENRE TO DISPLAY DETAILS")}
+
+
+
+
+
+            </div>
         </div>
-    </div>
     )
 
 }

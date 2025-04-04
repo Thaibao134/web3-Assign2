@@ -72,7 +72,16 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
                 Title: item.title,
                 ImageFileName: `${item.imageFileName}`.padStart(6,0),
                 ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
-                YearOfWork: item.yearOfWork
+                YearOfWork: item.yearOfWork,
+                Medium: item.medium,
+                Width: item.width,
+                Height: item.height,
+                GalleryName: item.galleries.galleryName,
+                GalleryCity: item.galleries.galleryCity,
+                MuseumLink: item.museumLink,
+                WikiLink: item.wikiLink,
+                Description: item.description,
+                CopyRightText: item.copyrightText,
             }));
             setGalleryPaintings(galleryPaintings);
         } catch (error) {
@@ -84,20 +93,21 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
     return (
         <>
             {/* DISPLAY NAV BAR */}
-            <NavBar/>
-            
-            <div className="flex h-[calc(100vh-4rem)]">
-                {/* Column1 */}
-                <GalleryList galleries={galleries} onSelectedGallery={onSelectedGallery}/>
+            <NavBar />
 
-                {/* Column 2 */}
-                <GalleryDetails selectedGallery={selectedGallery} onAddFavGallery={onAddFavGallery}/>
+            <div className="bg-[#e8a9a0] py-4">
+                <div className="flex h-screen m-16 ">
+                    {/* Column1 */}
+                    <GalleryList galleries={galleries} onSelectedGallery={onSelectedGallery} />
 
-                {/* Column 3 */}
-                <PaintingList Paintings={galleryPaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
+                    {/* Column 2 */}
+                    <GalleryDetails selectedGallery={selectedGallery} onAddFavGallery={onAddFavGallery} />
+
+                    {/* Column 3 */}
+                    <PaintingList Paintings={galleryPaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting} />
+                </div>
             </div>
-
-            <Footer/>
+            <Footer />
         </>
     )
 

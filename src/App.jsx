@@ -18,18 +18,26 @@ function App() {
   const [favouritePaintings, setFavouritePaintings] = useState([]);
   
 
-  const handleAddFavArtist = (artist) => {
-    setFavouriteArtists(prevState => [...prevState, artist]);
-  };
 
+  const handleAddFavArtist = (artist) => {
+    console.log(`APP SENDING: ${artist}`)
+    setFavouriteArtists(prevState => 
+      prevState.includes(artist) ? prevState : [...prevState, artist]
+    );
+  };
+  
 
   const handleAddFavGallery = (gallery) => {
-    setFavouriteGalleries(prevState => [...prevState, gallery]);
+    console.log(`APP SENDING: ${gallery}`)
+    setFavouriteGalleries(prevState => 
+      prevState.includes(gallery) ? prevState : [...prevState, gallery]);
   };
 
 
   const handleAddFavPaintings = (painting) => {
-    setFavouritePaintings(prevState => [...prevState, painting]);
+    console.log(`APP SENDING: ${painting}`)
+    setFavouritePaintings(prevState => 
+      prevState.includes(painting) ? prevState : [...prevState, painting]);
   };
 
   return (

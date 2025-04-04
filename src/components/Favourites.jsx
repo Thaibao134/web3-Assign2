@@ -5,9 +5,9 @@ const Favourites = ({favouriteArtists, favouriteGallery, favouritePaintings}) =>
    
     return (
         <>
-           {(console.log(favouriteArtists))}
-        {(console.log(favouriteGallery))}
-            {/* {(console.log(favouritePaintings))} */}
+           {/* {(console.log(`SENDING FAVOURTES: ${favouriteArtists}`))}
+           {(console.log(`SENDING FAVOURTES: ${favouriteGallery}`))} */}
+           {(console.log(`SENDING FAVOURTES: ${favouritePaintings}`))}
             <NavBar />
             <div className="flex flex-col items-center">
                 <h2>Favourites</h2>
@@ -21,11 +21,11 @@ const Favourites = ({favouriteArtists, favouriteGallery, favouritePaintings}) =>
                     
                     <div>
                         <h3 className="font-bold mb-2">Galleries</h3>
-                        <div className="border p-2 ">Gallery names
+                        <div className="border p-2 ">Gallery Names
                             {favouriteGallery.map((paintings, index) => (
                                 <div className="hover:bg-sky-700 cursor-pointer " key={index}>
                                     <div className="m-3 p-2 border-black border-2 overflow-auto flex flex-col text-center overflow">
-                                        {paintings.Name}
+                                        {paintings}
                                     </div>
                                 </div>
                             ))}
@@ -35,11 +35,11 @@ const Favourites = ({favouriteArtists, favouriteGallery, favouritePaintings}) =>
 
                     <div>
                         <h3 className="font-bold mb-2">Artists</h3>
-                        <div className="border p-2 ">artist names
+                        <div className="border p-2 ">Artist Names
                             {favouriteArtists.map((paintings, index) => (
                                 <div className="hover:bg-sky-700 cursor-pointer " key={index}>
                                     <div className="m-3 p-2 border-black border-2 overflow-auto flex flex-col text-center overflow">
-                                        {paintings.FirstName + " " + paintings.LastName}
+                                        {paintings}
                                     </div>
                                 </div>
                             ))}
@@ -52,11 +52,11 @@ const Favourites = ({favouriteArtists, favouriteGallery, favouritePaintings}) =>
 
                     <div>
                         <h3 className="font-bold mb-2">Paintings</h3>
-                        <div className="border p-2 ">Painting titles
+                        <div className="border p-2 ">Painting Titles
                             {favouritePaintings.map((paintings, index) => (
                                 <div className="hover:bg-sky-700 cursor-pointer " key={index}>
                                     <div className="m-3 p-2 border-black border-2 overflow-auto flex flex-col text-center overflow">
-                                        {paintings.Title}
+                                        {paintings}
                                     </div>
                                 </div>
                             ))}
