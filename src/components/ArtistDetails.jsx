@@ -16,7 +16,7 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
 
 
     return (
-        <div className="w-2/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0]">
+        <div className="w-2/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0] overflow-y-auto">
         
             <div>
                 <div>
@@ -26,7 +26,7 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
                 </div>
 
                 {selectedArtist ? (
-                    <h5 className="flex justify-center items-center h-full text-center">
+                    <h5 className="flex justify-center h-full">
                         <div className="">
                             <b>FirstName:</b> {selectedArtist.FirstName} <br />
                             <b>LastName: </b> {selectedArtist.LastName} <br />
@@ -36,10 +36,18 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
                             <b>YearOfDeath:</b> {selectedArtist.YearOfDeath} <br />
                             <b>Details:</b> {selectedArtist.Details}<br />
                             <b>ArtistLink:</b> {selectedArtist.ArtistLink} <br />
+                            
+                            
+                     
+                            <img src={"src/assets/artists/full/" + selectedArtist.ArtistID + ".jpg"} className="mx-auto w-36 h-auto"/>
+
+                      
+
                         </div>
                     </h5>
                 ) : ("SELECT ARTIST TO DISPLAY DETAILS")}
 
+                
                 {FavouritePopup && (
                     <div className="popup-message">
                         Added to Favourites!

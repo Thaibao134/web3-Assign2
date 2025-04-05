@@ -19,7 +19,7 @@ const NavBar = () => {
             </div>
 
             <div className="flex justify-center items-center p-4">
-            {["Art Dashboard", "Artist", "Paintings", "Gallery", "Genres", "Favourites", "Logout"].map((item, index) => (
+            {["Artist", "Gallery", "Genres", "Paintings", "Favourites", "Logout"].map((item, index) => (
                     <div key={index} className="mx-4 cursor-pointer text-2xl" onClick={() =>handleNavigations(item) }>{item}</div>
                 ))}
             </div>

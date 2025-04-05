@@ -49,6 +49,7 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
 
     // If an artist name was clicked, set that selected artist
     const onSelectedArtist = (singleArtist) => {
+        console.log(`THIS IS SELECTING ARTIST ${singleArtist}`);
         console.log(singleArtist);
         setSelectedArtist(singleArtist)
     }
