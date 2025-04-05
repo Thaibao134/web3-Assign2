@@ -1,6 +1,5 @@
-import ModalPopup from "./Modal";
+import ModalPopup from "../Modals/DisplayPaintingModal"
 import { useState } from "react";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFavPainting}) => { 
@@ -13,12 +12,10 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFav
         setShowModal(true);
     };
 
+    // Default title filtering
     let sortedPaintings = Paintings.sort((a, b) => a.Title.localeCompare(b.Title));
 
-    // ARTIST - TITLE,  YEAR                    (THUMBNAIL, TITLE, YEAR)
-    // GALLERY - ARTIST NAME , TITLE, YEAR      (THUMBNAIL, NAME, TITLE, YEAR)
-    // GENRE - ARTIST NAME, TITLE, YEAR         (THUMBNAIL,  NAME, TITLE, YEAR)
-
+    // Sort based on filtering option
     if (filterOption) {
         switch (filterOption) {
             case 'Title':
@@ -35,12 +32,12 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFav
         }
     }
 
-
-    const test = (painting) => {
+    // If the view is Artist Page, Dont display artist name on paintings
+    const DisplayArtistName = (painting) => {
         if (view !== "Artist") {
             return (
                 <>
-                {painting.ArtistName} <br />
+                Artist: { painting.ArtistName} <br />
               </>
             );
         } 
@@ -50,11 +47,6 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFav
     return (
         <div className="w-3/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0] ">
             <div>
-
-                {/* <div className="mb-2 bg-purple-500 basis-xs text-center">Add To Favourites</div> */}
-
-                {/* <div className=" basis-xs text-center">All Paintings of Artist</div> */}
-
                 <div className="flex justify-center gap-15 m-4 ">
                     <button className=" mb-1 p-1 border-black border-2 rounded bg-blue-400" onClick={() => handleFilterChange("Name")}>Artist Name</button>
                     <button className=" mb-1 p-1 border-black border-2 rounded bg-blue-400" onClick={() => handleFilterChange("Title")}>Title</button>
@@ -68,18 +60,14 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFav
                                 <div className="flex justify-center max-w-full h-auto ">
                                     <img src={`https://res.cloudinary.com/funwebdev/image/upload/w_400/art/paintings/square/${paintings.ImageFileName}.jpg`} onClick={() => handleImageClick(paintings)}></img>
                                 </div>
-                                    {test(paintings)}
-                                    
-                                {/* {paintings.ArtistName} <br /> */}
-                                {paintings.Title} <br />
-
-                                {/* ONLY FOR GALLERY */}
-                                {paintings.YearOfWork} <br /> 
+                                    {DisplayArtistName(paintings)}
+                                        
+                                    Title: {paintings.Title} <br />
+                                    Year: {paintings.YearOfWork} <br /> 
                             </div>
                         </div>
                     ))}
                 </div>
-
     
                 {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting}  />}
 

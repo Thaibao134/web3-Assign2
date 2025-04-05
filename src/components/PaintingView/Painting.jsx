@@ -1,27 +1,24 @@
 import { useState, useEffect } from 'react';
-import NavBar from "./NavBar";
-import Footer from "./Footer";
-import ModalPopup from './Modal';
-
+import NavBar from "../Commons/NavBar";
+import Footer from "../Commons/Footer";
+import ModalPopup from '../Modals/DisplayPaintingModal';
 
 
 const Paintings = ({onAddFavPainting}) => {    
 
-    const [data, setData] = useState([]);
-    const [selectedFilter, setSelectedFilter] = useState("");
 
-
-
-
+    const [data, setData] = useState([]); //contains all paintings
     const [showModal, setShowModal] = useState(false);
-    const [selectedPainting, setSelectedPainting] = useState(null);
 
+
+    // If a painting has been clicked, then set the painting and show popup
+    const [selectedPainting, setSelectedPainting] = useState(null);
     const handleImageClick = (painting) => {
         setSelectedPainting(painting);
         setShowModal(true);
     };
 
-
+    // set the value based on what is inputted
     const [selectedTitle, setSelectedTitle] = useState("");
     const [selectedArtist, setSelectedArtist] = useState("");
     const [selectedGallery, setSelectedGallery] = useState("");
@@ -29,6 +26,10 @@ const Paintings = ({onAddFavPainting}) => {
     const [selectedYear2, setSelectedYear2] = useState("");
 
 
+
+    //holds name of filter
+    const [selectedFilter, setSelectedFilter] = useState("");
+    //set the filter name
     const handleFilterChange = (props) => {
         console.log(props.target.value)
         setSelectedFilter(props.target.value)
@@ -36,64 +37,47 @@ const Paintings = ({onAddFavPainting}) => {
     }
 
 
+
     const [hasClickedSort, setHasClickedSort] = useState(false);
-    const [FilteredPaitnings, setFilteredPaitnings] = useState([])
+    const [FilteredPaitnings, setFilteredPaitnings] = useState([]) //Holds the new array of filtered paintings
 
     
+    // sort all paintings based on the filters
     const filterPaintings = (props) => {
         setHasClickedSort(true)
         if (props == "Title") {
             const filtered = data.filter(p => p.Title.toLowerCase().includes(selectedTitle.toLowerCase()));
-            console.log(filtered)
             setFilteredPaitnings(filtered)
 
-
         } else if (props == "Year") {
-            console.log("IMA YEASR")
-            console.log(`im Less than ${selectedYear}`)
-            console.log(`im Greater than ${selectedYear2}`)
-            
-
             const filtered = data.filter(p => {
                 return (
                     (selectedYear ? p.YearOfWork <= selectedYear : true) &&
                     (selectedYear2 ? p.YearOfWork >= selectedYear2 : true)
                 );
             });
-            
-            console.log(filtered)
             setFilteredPaitnings(filtered)
 
         } else if (props == "Artist") {
-            console.log("IMA ARTIST")
             const filtered = data.filter(p => p.ArtistName.toLowerCase().includes(selectedArtist.toLowerCase()));
-            console.log(filtered)
             setFilteredPaitnings(filtered)
 
         }  else if (props == "Gallery") {
-            console.log("IMA Gallery")
+            const filtered = data.filter(p => p.GalleryName.toLowerCase().includes(selectedGallery.toLowerCase()));
+            setFilteredPaitnings(filtered)
         }
     }
 
-
-    const test = () => {
-        const allArtistNames = data.map(p => p.ArtistName);
-        const uniqueArtistNames = [...new Set(allArtistNames)];
-        console.log(uniqueArtistNames)
-    }
-
-
-
+    //clear all filters
     const clearAll = () => {
         setSelectedTitle("")
         setSelectedGallery("")
         setSelectedArtist("")
         setSelectedYear("")
         setSelectedYear2("")
-
     }
 
-    
+    //When entering page, pull up entire paintings List
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -167,27 +151,27 @@ const Paintings = ({onAddFavPainting}) => {
 
                         <div className="flex items-center justify-center flex-o">
                             <input className="w-10 h-6" type="radio" id="YearRadio" name="filter" value="Year" onChange={handleFilterChange} />
-                            <label htmlFor="YearRadio" className="w-35">Year:</label>  
-                            
+                            <label htmlFor="YearRadio" className="w-35">Year:</label>
+
                             <div className="flex flex-col items-center">
-                                <label htmlFor="YearRadio" className="">Greater Than But Equal To:</label>  
+                                <label htmlFor="YearRadio" className="">Greater Than But Equal To:</label>
                                 <input
                                     className={`border-solid border-black border-2 m-2 ${selectedFilter !== "Year" ? "bg-gray-200" : ""}`}
                                     type="text"
-                                    id="Year2"   
+                                    id="Year2"
                                     name="filter"
-                                    disabled={selectedFilter !== "Year"}  
+                                    disabled={selectedFilter !== "Year"}
                                     value={selectedYear2}
                                     onChange={(e) => setSelectedYear2(e.target.value)}
                                 />
 
-                                <label htmlFor="YearRadio" className="">Less Than But Equal To:</label>  
+                                <label htmlFor="YearRadio" className="">Less Than But Equal To:</label>
                                 <input
                                     className={`border-solid border-black border-2 m-2 ${selectedFilter !== "Year" ? "bg-gray-200" : ""}`}
                                     type="text"
-                                    id="Year"   
+                                    id="Year"
                                     name="filter"
-                                    disabled={selectedFilter !== "Year"}  
+                                    disabled={selectedFilter !== "Year"}
                                     value={selectedYear}
                                     onChange={(e) => setSelectedYear(e.target.value)}
                                 />
@@ -203,7 +187,8 @@ const Paintings = ({onAddFavPainting}) => {
                 </h1>
 
 
-                <h1 className="col-span-3  border-solid bolrder-black border-2">
+                {/* Display Data base filters and no filters */}
+                <h1 className="col-span-3 border-solid bolrder-black border-2">
                     <div className="grid grid-cols-4 max-h-screen overflow-y-auto" >
                         {hasClickedSort && FilteredPaitnings.length === 0 ? (
                             <div className="col-span-4 text-center text-red-500 font-bold"> No search results found. </div>
@@ -223,7 +208,7 @@ const Paintings = ({onAddFavPainting}) => {
                     </div>
                 </h1>
 
-                
+                {/* Popup when a painting has been clicked */}
                 {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting} />}
 
             </div>

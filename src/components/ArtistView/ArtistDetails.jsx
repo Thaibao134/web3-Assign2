@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Favourites from "./Favourites";
 
 const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
 
     const [FavouritePopup, setFavouritePopup] = useState(false)
 
+    //Create a popup when added to favourites with timer
     const handleAddFavArtist = () => {
         onAddFavArtist(`${selectedArtist.FirstName} ${selectedArtist.LastName}`)
         setFavouritePopup(true)
@@ -14,10 +14,8 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
     }
 
 
-
     return (
         <div className="w-2/6 bg-[#333333] flex justify-center text-white text-xl border-4 border-solid border-[#e8a9a0] overflow-y-auto">
-        
             <div>
                 <div>
                     <div className="bg-blue-400 m-2 text-center w-auto py-2 m-4 rounded">
@@ -28,24 +26,18 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
                 {selectedArtist ? (
                     <h5 className="flex justify-center h-full">
                         <div className="">
-                            <b>FirstName:</b> {selectedArtist.FirstName} <br />
-                            <b>LastName: </b> {selectedArtist.LastName} <br />
-                            <b>Nationality:</b> {selectedArtist.Nationality} <br />
-                            <b>Gender:</b> {selectedArtist.Gender} <br />
-                            <b>YearOfBirth:</b> {selectedArtist.YearOfBirth}<br />
-                            <b>YearOfDeath:</b> {selectedArtist.YearOfDeath} <br />
-                            <b>Details:</b> {selectedArtist.Details}<br />
-                            <b>ArtistLink:</b> {selectedArtist.ArtistLink} <br />
-                            
-                            
-                     
+                            <b>FirstName:</b> {selectedArtist.FirstName} <br /><br />
+                            <b>LastName: </b> {selectedArtist.LastName} <br /><br />
+                            <b>Nationality:</b> {selectedArtist.Nationality} <br /><br />
+                            <b>Gender:</b> {selectedArtist.Gender} <br /><br />
+                            <b>YearOfBirth:</b> {selectedArtist.YearOfBirth}<br /><br />
+                            <b>YearOfDeath:</b> {selectedArtist.YearOfDeath} <br /><br />
+                            <b>Details:</b> {selectedArtist.Details}<br /><br />
+                            <b>ArtistLink:</b> {selectedArtist.ArtistLink} <br /><br />
                             <img src={"src/assets/artists/full/" + selectedArtist.ArtistID + ".jpg"} className="mx-auto w-36 h-auto"/>
-
-                      
-
                         </div>
                     </h5>
-                ) : ("SELECT ARTIST TO DISPLAY DETAILS")}
+                ) : ("Select artist to display further details")}
 
                 
                 {FavouritePopup && (
@@ -53,16 +45,8 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
                         Added to Favourites!
                     </div>
                 )}
-
-
-
-
             </div>
-
-
         </div>
-
-
     )
 }
 

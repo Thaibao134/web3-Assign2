@@ -1,13 +1,11 @@
-const DisplayModal = ({painting}) => {
+const DisplayModal = ({ painting }) => {
     return (
         <>
             <div className="grid grid-cols-2 w-full">
-                
                 <div className="flex justify-center items-center w-full ">
                     <img src={`https://res.cloudinary.com/funwebdev/image/upload/w_400/art/paintings/square/${painting.ImageFileName}.jpg`}></img>
                 </div>
-                
-            
+
                 <div className="w-full break-words">
                     <b>Painting Title:</b> {painting.Title} <br />
                     <b>ArtistName:</b> {painting.ArtistName} <br />
@@ -26,26 +24,13 @@ const DisplayModal = ({painting}) => {
 
                     <div className="flex">
                         {painting.DominantColours.map((colour, index) => (
-                           <div key={index}  title={colour.ColourName} 
+                            <div key={index} title={colour.ColourName}
                                 className="box-border size-12 border-2 m-1 " style={{ backgroundColor: colour.ColourRGB }}>
                             </div>
                         ))}
                     </div>
-
-
-
-
-
-
-
-
                 </div>
-
-
-
             </div>
-           
-           
         </>
     )
 }

@@ -1,28 +1,26 @@
 import { useState, useEffect } from 'react';
-import NavBar from "./NavBar";
-import PaintingList from "./PaintingList";
+import NavBar from "../Commons/NavBar";
+import PaintingList from "../Commons/PaintingList";
 import GenreList from './GenreList';
 import GenreDetails from './GenreDetails';
-import Footer from "./Footer";
+import Footer from "../Commons/Footer";
 
 
 const Genres = ({onAddFavPainting}) => {
+
+    // Filter title, year, or paintingID
+    const handleFilterChange = (filterType) => {
+        setFilterOption(filterType);
+    };
+
 
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState(null)
     const [genrePaintings, setGenrePaintings] = useState([])
     const [filterOption, setFilterOption] = useState("Title")
 
-    const handleFilterChange = (filterType) => {
-        setFilterOption(filterType);
-    };
 
-
-    const onSelectedGenre = (selectedGenre) => {
-        console.log(selectedGenre);
-        setSelectedGenre(selectedGenre)
-    }
-
+    //When entering page, pull up entire genres List
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -46,6 +44,12 @@ const Genres = ({onAddFavPainting}) => {
         fetchData();
     }, []);
 
+    // If an genre name was clicked, set that selected genre
+    const onSelectedGenre = (selectedGenre) => {
+        console.log(selectedGenre);
+        setSelectedGenre(selectedGenre)
+    }
+
 
     //Runs if a selected SelectedGenre has been updated
     useEffect(() => {
@@ -55,7 +59,7 @@ const Genres = ({onAddFavPainting}) => {
     }, [selectedGenre]);
 
 
-    //Runs based on useEffect to retrieve all paintings from the selected artist
+    //Retrieve all paintings from the selected genre
     const fetchPaintings = async (genreId) => {
         try {
             const response = await fetch(`/api/paintings/genre/${genreId}`);
@@ -100,14 +104,12 @@ const Genres = ({onAddFavPainting}) => {
 
             <div className="bg-[#e8a9a0] py-4">
                 <div className="flex h-screen m-16 ">
-
                 <GenreList genres={genres} onSelectedGenre={onSelectedGenre} />
-
                 <GenreDetails selectedGenre={selectedGenre} />
+                <PaintingList Paintings={genrePaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting} />
+                </div>
+            </div>
 
-                <PaintingList Paintings={genrePaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
-            </div>
-            </div>
             <Footer />
         </>
     )

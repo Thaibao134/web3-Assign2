@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logoImage from '../assets/logoipsum-338.svg'
+import logoImage from '../../assets/logoipsum-338.svg'
 
 const LoginScreen = () => {
     const navigate = useNavigate();

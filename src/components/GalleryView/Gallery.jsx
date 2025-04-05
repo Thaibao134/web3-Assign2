@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+import NavBar from "../Commons/NavBar.jsx";
+import Footer from "../Commons/Footer.jsx";
 import GalleryList from "./GalleryList.jsx";
 import GalleryDetails from "./GalleryDetails.jsx";
-import PaintingList from "./PaintingList.jsx";
-import Example from './Modal.jsx';
-
+import PaintingList from "../Commons/PaintingList.jsx";
 
 const Gallery = ({onAddFavGallery, onAddFavPainting}) => {    
 
@@ -18,7 +16,7 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
     const [galleryPaintings, setGalleryPaintings] = useState([])
     const [filterOption, setFilterOption] = useState("Title");
 
-
+    //When entering page, pull up entire galleries List
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -46,12 +44,14 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
     }, []);
 
 
+    // If an gallery name was clicked, set that selected gallery
     const onSelectedGallery = (singleGallery) => {
         console.log(singleGallery)
         setSelectedGallery(singleGallery)   
     }
 
 
+    //Runs if a selected SelectedGallery has been updated
     useEffect(() => {
         if (selectedGallery) {
             fetchGallery(selectedGallery.GalleryId)
@@ -60,8 +60,7 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
 
 
     
-
-    //Runs based on useEffect to retrieve all paintings from the selected artist
+    //Retrieve all paintings from the selected gallery
     const fetchGallery = async (GalleryId) => {
         try {
             const response = await fetch(`/api/paintings/galleries/${GalleryId}`);
@@ -100,26 +99,18 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
 
     return (
         <>
-            {/* DISPLAY NAV BAR */}
             <NavBar />
 
             <div className="bg-[#e8a9a0] py-4">
                 <div className="flex h-screen m-16 ">
-                    {/* Column1 */}
                     <GalleryList galleries={galleries} onSelectedGallery={onSelectedGallery} />
-
-                    {/* Column 2 */}
                     <GalleryDetails selectedGallery={selectedGallery} onAddFavGallery={onAddFavGallery} />
-
-                    {/* Column 3 */}
                     <PaintingList Paintings={galleryPaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting} />
                 </div>
             </div>
+
             <Footer />
         </>
     )
-
-
 }
-
 export default Gallery

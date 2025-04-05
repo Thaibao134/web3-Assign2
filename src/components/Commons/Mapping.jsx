@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
+// Display the google maps
 const Map = ({ longitude, latitude }) => {
   return (
     <MapContainer

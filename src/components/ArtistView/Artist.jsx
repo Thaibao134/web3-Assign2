@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import NavBar from "./NavBar";
+import NavBar from "../Commons/NavBar";
 import ArtistList from "./ArtistList"
 import ArtistDetails from "./ArtistDetails";
-import PaintingList from "./PaintingList";
-import Footer from "./Footer";
+import PaintingList from "../Commons/PaintingList";
+import Footer from "../Commons/Footer";
 
 
 const Artist = ({onAddFavArtist, onAddFavPainting}) => {
+    
     // Filter title, year, or paintingID
     const handleFilterChange = (filterType) => {
         setFilterOption(filterType);
@@ -19,7 +20,7 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
     const [filterOption, setFilterOption] = useState("Title");
 
 
-    //When entering page, it will pull up entire artist List
+    //When entering page, pull up entire artist List
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -37,7 +38,6 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
                     Details: item.details,
                     ArtistLink: item.artistLink
                 }));
-
                 setArtist(ArtistData);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -49,8 +49,6 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
 
     // If an artist name was clicked, set that selected artist
     const onSelectedArtist = (singleArtist) => {
-        console.log(`THIS IS SELECTING ARTIST ${singleArtist}`);
-        console.log(singleArtist);
         setSelectedArtist(singleArtist)
     }
 
@@ -63,13 +61,13 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
     }, [selectedArtist]);
 
 
-    //Runs based on useEffect to retrieve all paintings from the selected artist
+    //Retrieve all paintings from the selected artist
     const fetchPaintings = async (artistId) => {
         try {
             const response = await fetch(`/api/paintings/artist/${artistId}`);
             const data = await response.json();
     
-            //PARSE JSON TO STRING
+            //parse string TO json
             const PaintingData = data.map((item) => {
                 const annotations = JSON.parse(item.jsonAnnotations);
     
@@ -102,24 +100,16 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
     };
     
 
-
-
     return (
         <>
-            {/* DISPLAY NAV BAR */}
             <NavBar/>
-            {/* <div className="flex h-[calc(100vh-4rem)]"> */}
 
             <div className="bg-[#e8a9a0] py-4">
                 <div className="flex h-screen m-16 ">
-                    {/* COLUMN 1 THAT DISPLAYS THE ARTIST LIST */}
                     <ArtistList artists={artist} onSelectedArtist={onSelectedArtist}/>
-
-                    {/* COLUMN 2 THAT DISPLAYS THE ARTIST DETAILS */}
                     <ArtistDetails selectedArtist={selectedArtist} onAddFavArtist={onAddFavArtist}/>
-
-                    {/* COLUMN 3 THAT DISPLAYS ALL ARTIST PAINTINGS */}
-                    <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting}/>
+                    <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange} 
+                    onAddFavPainting={onAddFavPainting}/>
                 </div>
             </div>
 
