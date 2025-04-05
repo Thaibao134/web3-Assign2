@@ -61,33 +61,36 @@ const Genres = ({onAddFavPainting}) => {
             const response = await fetch(`/api/paintings/genre/${genreId}`);
             const data = await response.json();
 
-            const PaintingData = data.map((item) => ({
-                PaintingID: item.paintingId,
-                Title: item.title,
-                YearOfWork: item.yearOfWork,
-                ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
-                ImageFileName: `${item.imageFileName}`.padStart(6, 0),
-                Medium: item.medium,
-                Width: item.width,
-                Height: item.height,
-                GalleryName: item.galleries.galleryName,
-                GalleryCity: item.galleries.galleryCity,
-                MuseumLink: item.museumLink,
-                WikiLink: item.wikiLink,
-                Description: item.description,
-                CopyRightText: item.copyrightText
+            const PaintingData = data.map((item) => {
+                const annotations = JSON.parse(item.jsonAnnotations);
 
+                return {
+                    PaintingID: item.paintingId,
+                    Title: item.title,
+                    YearOfWork: item.yearOfWork,
+                    ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
+                    ImageFileName: `${item.imageFileName}`.padStart(6, 0),
+                    Medium: item.medium,
+                    Width: item.width,
+                    Height: item.height,
+                    GalleryName: item.galleries.galleryName,
+                    GalleryCity: item.galleries.galleryCity,
+                    MuseumLink: item.museumLink,
+                    WikiLink: item.wikiLink,
+                    Description: item.description,
+                    CopyRightText: item.copyrightText,
+                    DominantColours: annotations.dominantColors.map(colorObj => ({
+                        ColourRGB: `rgb(${colorObj.color.red}, ${colorObj.color.green}, ${colorObj.color.blue})`,
+                        ColourName: colorObj.name
+                    }))
+                };
 
-
-
-            }));
+            });
             setGenrePaintings(PaintingData);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
-
-
 
 
 

@@ -21,6 +21,24 @@ const DisplayModal = ({painting}) => {
                     <b>WikiLink:</b> {painting.WikiLink} <br />
                     <b>Description:</b> {painting.Description} <br />
                     <b>CopyRightText:</b> {painting.CopyRightText} <br />
+                    <br />
+                    <b>Dominant Colours:</b>
+
+                    <div className="flex">
+                        {painting.DominantColours.map((colour, index) => (
+                           <div key={index}  title={colour.ColourName} 
+                                className="box-border size-12 border-2 m-1 " style={{ backgroundColor: colour.ColourRGB }}>
+                            </div>
+                        ))}
+                    </div>
+
+
+
+
+
+
+
+
                 </div>
 
 
