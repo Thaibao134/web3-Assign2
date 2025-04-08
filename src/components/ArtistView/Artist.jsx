@@ -19,6 +19,7 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
     const [artistPaintings, setArtistPaintings] = useState([]);
     const [filterOption, setFilterOption] = useState("Title");
     const [FavouritePopup, setFavouritePopup] = useState(false)
+     const [loading, setLoading] = useState(false);
 
     const handleAddToFavourites = () => {
         setFavouritePopup(true);
@@ -32,12 +33,14 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
     //When entering page, pull up entire artist List
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true)
 
             // Check if in local storage, else pull from API
             const storedArtists = localStorage.getItem('artistsData');
 
             if (storedArtists) {
                 setArtist(JSON.parse(storedArtists));
+                setLoading(false)
             } else {
                 try {
                     const response = await fetch("/api/artists");
@@ -56,8 +59,10 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
                     }));
                     setArtist(ArtistData);
                     localStorage.setItem('artistsData', JSON.stringify(ArtistData));
+                    setLoading(false)
                 } catch (error) {
                     console.error("Error fetching data:", error);
+                    setLoading(false)
                 }
             }
         };
@@ -146,6 +151,14 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
                         Added to Favourites!
                     </div>
                 )}
+
+
+            {loading && (
+                <div className="loading">
+                    <p>Loading data!</p> 
+                </div>
+            )}
+
 
             <Footer/>
         </>
