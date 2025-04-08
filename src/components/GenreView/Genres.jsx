@@ -36,7 +36,7 @@ const Genres = ({onAddFavPainting}) => {
         const storedGenres = localStorage.getItem('genreData');
 
         if (storedGenres) {
-            setArtist(JSON.parse(storedGenres));
+            setGenres(JSON.parse(storedGenres));
         } else {
 
                 try {
@@ -84,7 +84,7 @@ const Genres = ({onAddFavPainting}) => {
         const storedPaintings = localStorage.getItem(`Genre_${genreId}_Paintings`);
 
         if (storedPaintings) {
-            setArtistPaintings(JSON.parse(storedPaintings));
+            setGenresPaintings(JSON.parse(storedPaintings));
         } else {
             try {
                 const response = await fetch(`/api/paintings/genre/${genreId}`);
