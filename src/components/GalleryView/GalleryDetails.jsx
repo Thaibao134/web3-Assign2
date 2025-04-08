@@ -26,15 +26,21 @@ const GalleryDetails = ({selectedGallery, onAddFavGallery}) => {
                 {selectedGallery ? (
                     <h5 className="flex justify-center h-full">
                         <div className="">
-                            <b>GalleryName:</b> {selectedGallery.Name} <br /><br />
-                            <b>NativeName: </b> {selectedGallery.NativeName} <br /><br />
-                            <b>City:</b> {selectedGallery.City} <br /><br />
-                            <b>Address:</b> {selectedGallery.Address} <br /><br />
-                            <b>Country:</b> {selectedGallery.Country}<br /><br />
-                            <b>GalleryUrl:</b> {selectedGallery.GalleryUrl} <br /><br />
-                            <b>latitude:</b> {selectedGallery.Latitude}<br /><br />
-                            <b>longitude:</b> {selectedGallery.Longitude} <br /><br />
+                            <b>Gallery Name:</b> {selectedGallery.Name} <br /><br />
+                            <b>Local Name: </b> {selectedGallery.NativeName} <br /><br />
+                            <b>Full Address: </b> {selectedGallery.Address} {selectedGallery.City} {selectedGallery.Country} <br /><br />
+
+
+                            {/* If available then hyperlink, else N/A */}
+                            {selectedGallery.GalleryUrl === "" ? (
+                                <div className="text-white"><b>View Official Site:</b> N/A</div>
+                            ) : (
+                                <a href={selectedGallery.GalleryUrl} target="_blank" className="text-white">View Official Site</a>
+                            )} <br /><br />
+
+
                             <Map longitude={selectedGallery.Longitude} latitude={selectedGallery.Latitude} />
+                            <b>Coordinates:</b> {selectedGallery.Latitude}, {selectedGallery.Longitude} <br /><br />
                         </div>
                     </h5>
                 ) : ("Select gallery to display further details")}

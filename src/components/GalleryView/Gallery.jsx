@@ -29,25 +29,35 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
     //When entering page, pull up entire galleries List
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch("/api/galleries");
-                const data = await response.json();
 
-                const GalleriesData = data.map((item) => ({
-                    GalleryId: item.galleryId,
-                    Name: item.galleryName,
-                    NativeName: item.galleryNativeName,
-                    City: item.galleryCity,
-                    Address: item.galleryAddress,
-                    Country: item.galleryCountry,
-                    GalleryUrl: item.galleryWebSite,
-                    Latitude: item.latitude,
-                    Longitude: item.longitude
-                }));
+            // Check if in local storage, else pull from API
+            const storedGalleries = localStorage.getItem("galleriesData");
+            
+            if (storedGalleries) {
+                // If galleries are found in localStorage, use them
+                setGalleries(JSON.parse(storedGalleries));
+            } else {
+                try {
+                    const response = await fetch("/api/galleries");
+                    const data = await response.json();
 
-                setGalleries(GalleriesData);
-            } catch (error) {
-                console.error("Error fetching data:", error);
+                    const GalleriesData = data.map((item) => ({
+                        GalleryId: item.galleryId,
+                        Name: item.galleryName,
+                        NativeName: item.galleryNativeName,
+                        City: item.galleryCity,
+                        Address: item.galleryAddress,
+                        Country: item.galleryCountry,
+                        GalleryUrl: item.galleryWebSite,
+                        Latitude: item.latitude,
+                        Longitude: item.longitude
+                    }));
+
+                    setGalleries(GalleriesData);
+                    localStorage.setItem("galleriesData", JSON.stringify(GalleriesData));
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
             }
         };
         fetchData();
@@ -72,37 +82,46 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
     
     //Retrieve all paintings from the selected gallery
     const fetchGallery = async (GalleryId) => {
-        try {
-            const response = await fetch(`/api/paintings/galleries/${GalleryId}`);
-            const data = await response.json();
-    
-            const galleryPaintings = data.map((item) => {
-                const annotations = JSON.parse(item.jsonAnnotations);
-    
-                return {
-                    PaintingId: item.paintingId,
-                    Title: item.title,
-                    ImageFileName: `${item.imageFileName}`.padStart(6, 0),
-                    ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
-                    YearOfWork: item.yearOfWork,
-                    Medium: item.medium,
-                    Width: item.width,
-                    Height: item.height,
-                    GalleryName: item.galleries.galleryName,
-                    GalleryCity: item.galleries.galleryCity,
-                    MuseumLink: item.museumLink,
-                    WikiLink: item.wikiLink,
-                    Description: item.description,
-                    CopyRightText: item.copyrightText,
-                    DominantColours: annotations.dominantColors.map(colorObj => ({
-                        ColourRGB: `rgb(${colorObj.color.red}, ${colorObj.color.green}, ${colorObj.color.blue})`,
-                        ColourName: colorObj.name
-                    }))
-                };
-            });
-            setGalleryPaintings(galleryPaintings);
-        } catch (error) {
-            console.error("Error fetching data:", error);
+
+        const storedPaintings = localStorage.getItem(`gallery_${GalleryId}_paintings`);
+
+        if (storedPaintings) {
+            // If paintings are found in localStorage for this gallery, use them
+            setGalleryPaintings(JSON.parse(storedPaintings));
+        } else {
+            try {
+                const response = await fetch(`/api/paintings/galleries/${GalleryId}`);
+                const data = await response.json();
+
+                const galleryPaintings = data.map((item) => {
+                    const annotations = JSON.parse(item.jsonAnnotations);
+
+                    return {
+                        PaintingId: item.paintingId,
+                        Title: item.title,
+                        ImageFileName: `${item.imageFileName}`.padStart(6, 0),
+                        ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
+                        YearOfWork: item.yearOfWork,
+                        Medium: item.medium,
+                        Width: item.width,
+                        Height: item.height,
+                        GalleryName: item.galleries.galleryName,
+                        GalleryCity: item.galleries.galleryCity,
+                        MuseumLink: item.museumLink,
+                        WikiLink: item.wikiLink,
+                        Description: item.description,
+                        CopyRightText: item.copyrightText,
+                        DominantColours: annotations.dominantColors.map(colorObj => ({
+                            ColourRGB: `rgb(${colorObj.color.red}, ${colorObj.color.green}, ${colorObj.color.blue})`,
+                            ColourName: colorObj.name
+                        }))
+                    };
+                });
+                setGalleryPaintings(galleryPaintings);
+                localStorage.setItem(`gallery_${GalleryId}_paintings`, JSON.stringify(galleryPaintings));
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         }
     };
     

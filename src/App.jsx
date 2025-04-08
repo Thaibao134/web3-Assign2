@@ -8,7 +8,6 @@ import Artist from './components/ArtistView/Artist'
 import Genres from './components/GenreView/Genres';
 import Favourites from './components/FavouritesView/Favourites';
 
-
 function App() {
 
   // Holds the favourite categories

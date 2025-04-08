@@ -11,6 +11,7 @@ const Paintings = ({onAddFavPainting}) => {
     const [showModal, setShowModal] = useState(false);
     const [FavouritePopup, setFavouritePopup] = useState(false)
 
+      // popup to show favourite has been added
     const handleAddToFavourites = () => {
         setFavouritePopup(true);
 
@@ -45,9 +46,9 @@ const Paintings = ({onAddFavPainting}) => {
     }
 
 
-
+    
     const [hasClickedSort, setHasClickedSort] = useState(false);
-    const [FilteredPaitnings, setFilteredPaitnings] = useState([]) //Holds the new array of filtered paintings
+    const [FilteredPaintings, setFilteredPaintings] = useState([]) //Holds the new array of filtered paintings
 
     
     // sort all paintings based on the filters
@@ -55,7 +56,7 @@ const Paintings = ({onAddFavPainting}) => {
         setHasClickedSort(true)
         if (props == "Title") {
             const filtered = data.filter(p => p.Title.toLowerCase().includes(selectedTitle.toLowerCase()));
-            setFilteredPaitnings(filtered)
+            setFilteredPaintings(filtered)
 
         } else if (props == "Year") {
             const filtered = data.filter(p => {
@@ -64,15 +65,15 @@ const Paintings = ({onAddFavPainting}) => {
                     (selectedYear2 ? p.YearOfWork >= selectedYear2 : true)
                 );
             });
-            setFilteredPaitnings(filtered)
+            setFilteredPaintings(filtered)
 
         } else if (props == "Artist") {
             const filtered = data.filter(p => p.ArtistName.toLowerCase().includes(selectedArtist.toLowerCase()));
-            setFilteredPaitnings(filtered)
+            setFilteredPaintings(filtered)
 
         }  else if (props == "Gallery") {
             const filtered = data.filter(p => p.GalleryName.toLowerCase().includes(selectedGallery.toLowerCase()));
-            setFilteredPaitnings(filtered)
+            setFilteredPaintings(filtered)
         }
     }
 
@@ -83,6 +84,8 @@ const Paintings = ({onAddFavPainting}) => {
         setSelectedArtist("")
         setSelectedYear("")
         setSelectedYear2("")
+        setFilteredPaintings([]); 
+        setHasClickedSort(false);
     }
 
     //When entering page, pull up entire paintings List
@@ -153,7 +156,7 @@ const Paintings = ({onAddFavPainting}) => {
                         <div className='flex items-center justify-center'>
                             <input className="w-10 h-6" type="radio" id="Gallery" name="filter" value="Gallery" onChange={handleFilterChange} />
                             <label htmlFor="Gallery" className='w-35'>Gallery:</label>
-                            <input className={`border-solid bolrder-black border-2 m-2 ${selectedFilter !== "Gallery" ? "bg-gray-200" : " "}`} type="text" id="Year" name="filter" disabled={selectedFilter !== "Gallery"} value={selectedGallery} onChange={(e) => setSelectedGallery(e.target.value)} />
+                            <input className={`border-solid border-black border-2 m-2 ${selectedFilter !== "Gallery" ? "bg-gray-200" : " "}`} type="text" id="Year" name="filter" disabled={selectedFilter !== "Gallery"} value={selectedGallery} onChange={(e) => setSelectedGallery(e.target.value)} />
                         </div>
 
 
@@ -186,22 +189,22 @@ const Paintings = ({onAddFavPainting}) => {
                             </div>
                         </div>
 
-
+                        {/* CLEAR AND FILTER */}
                         <div className='flex justify-center'>
                             <button className="border-solid border-2 m-2 p-2" onClick={clearAll}>Clear</button>
-                            <button className="border-solid border-2 m-2 p-2" onClick={() => filterPaintings(selectedFilter)}>Sort By</button>
+                            <button className="border-solid border-2 m-2 p-2" onClick={() => filterPaintings(selectedFilter)}>Filter</button>
                         </div>
                     </fieldset>
                 </h1>
 
 
                 {/* Display Data base filters and no filters */}
-                <h1 className="col-span-3 border-solid bolrder-black border-2">
+                <h1 className="col-span-3 border-solid border-black border-2">
                     <div className="grid grid-cols-4 max-h-screen overflow-y-auto" >
-                        {hasClickedSort && FilteredPaitnings.length === 0 ? (
+                        {hasClickedSort && FilteredPaintings.length === 0 ? (
                             <div className="col-span-4 text-center text-red-500 font-bold"> No search results found. </div>
                         ) :
-                            (FilteredPaitnings.length > 0 ? FilteredPaitnings : data).map((paintings, index) => (
+                            (FilteredPaintings.length > 0 ? FilteredPaintings : data).map((paintings, index) => (
                                 <div className="hover:bg-sky-700 cursor-pointer " key={index}>
                                     <div className="m-1 p-2 border-black border-2 overflow-auto flex flex-col text-center overflow">
                                         <div className="flex justify-center max-w-full h-auto ">

@@ -30,23 +30,33 @@ const Genres = ({onAddFavPainting}) => {
 
     //When entering page, pull up entire genres List
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("/api/genres");
-                const data = await response.json();
-    
-                const GenreData = data.map((item) => ({
-                    GenreId: item.genreId,
-                    GenreName: item.genreName,
-                    Description: item.description,
-                    WikiLink: item.wikiLink,
-                    EraName: item.eras.eraName,
-                    EraYears: item.eras.eraYears,
-                }));
-    
-                setGenres(GenreData);
-            } catch (error) {
-                console.error("Error fetching data:", error);
+
+            const fetchData = async () => {
+                        // Check if in local storage, else pull from API
+        const storedGenres = localStorage.getItem('genreData');
+
+        if (storedGenres) {
+            setArtist(JSON.parse(storedGenres));
+        } else {
+
+                try {
+                    const response = await fetch("/api/genres");
+                    const data = await response.json();
+
+                    const GenreData = data.map((item) => ({
+                        GenreId: item.genreId,
+                        GenreName: item.genreName,
+                        Description: item.description,
+                        WikiLink: item.wikiLink,
+                        EraName: item.eras.eraName,
+                        EraYears: item.eras.eraYears,
+                    }));
+
+                    setGenres(GenreData);
+                    localStorage.setItem('genreData', JSON.stringify(GenreData));
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
             }
         };
         fetchData();
@@ -69,38 +79,47 @@ const Genres = ({onAddFavPainting}) => {
 
     //Retrieve all paintings from the selected genre
     const fetchPaintings = async (genreId) => {
-        try {
-            const response = await fetch(`/api/paintings/genre/${genreId}`);
-            const data = await response.json();
 
-            const PaintingData = data.map((item) => {
-                const annotations = JSON.parse(item.jsonAnnotations);
+        // Check if in local storage, else pull from API
+        const storedPaintings = localStorage.getItem(`Genre_${genreId}_Paintings`);
 
-                return {
-                    PaintingID: item.paintingId,
-                    Title: item.title,
-                    YearOfWork: item.yearOfWork,
-                    ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
-                    ImageFileName: `${item.imageFileName}`.padStart(6, 0),
-                    Medium: item.medium,
-                    Width: item.width,
-                    Height: item.height,
-                    GalleryName: item.galleries.galleryName,
-                    GalleryCity: item.galleries.galleryCity,
-                    MuseumLink: item.museumLink,
-                    WikiLink: item.wikiLink,
-                    Description: item.description,
-                    CopyRightText: item.copyrightText,
-                    DominantColours: annotations.dominantColors.map(colorObj => ({
-                        ColourRGB: `rgb(${colorObj.color.red}, ${colorObj.color.green}, ${colorObj.color.blue})`,
-                        ColourName: colorObj.name
-                    }))
-                };
+        if (storedPaintings) {
+            setArtistPaintings(JSON.parse(storedPaintings));
+        } else {
+            try {
+                const response = await fetch(`/api/paintings/genre/${genreId}`);
+                const data = await response.json();
 
-            });
-            setGenrePaintings(PaintingData);
-        } catch (error) {
-            console.error("Error fetching data:", error);
+                const PaintingData = data.map((item) => {
+                    const annotations = JSON.parse(item.jsonAnnotations);
+
+                    return {
+                        PaintingID: item.paintingId,
+                        Title: item.title,
+                        YearOfWork: item.yearOfWork,
+                        ArtistName: `${item.artists.firstName} ${item.artists.lastName}`,
+                        ImageFileName: `${item.imageFileName}`.padStart(6, 0),
+                        Medium: item.medium,
+                        Width: item.width,
+                        Height: item.height,
+                        GalleryName: item.galleries.galleryName,
+                        GalleryCity: item.galleries.galleryCity,
+                        MuseumLink: item.museumLink,
+                        WikiLink: item.wikiLink,
+                        Description: item.description,
+                        CopyRightText: item.copyrightText,
+                        DominantColours: annotations.dominantColors.map(colorObj => ({
+                            ColourRGB: `rgb(${colorObj.color.red}, ${colorObj.color.green}, ${colorObj.color.blue})`,
+                            ColourName: colorObj.name
+                        }))
+                    };
+
+                });
+                setGenrePaintings(PaintingData);
+                localStorage.setItem(`Genre_${genreId}_Paintings}`, JSON.stringify(PaintingData));
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         }
     };
 

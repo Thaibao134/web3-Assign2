@@ -9,7 +9,25 @@ const GenreDetails = ({ selectedGenre }) => {
                         <div className="">
                             <b>Name:</b> {selectedGenre.GenreName} <br /><br />
                             <b>Description: </b> {selectedGenre.Description} <br /><br />
-                            <b>Wiki Link:</b> {selectedGenre.WikiLink} <br /><br />
+
+
+                            {/* If available then hyperlink, else N/A */}
+                            {selectedGenre.WikiLink === "" ? (
+                                <div className="text-white"><b>WikiLink:</b> N/A</div>
+                            ) : (
+                                <a href={selectedGenre.WikiLink} target="_blank" className="text-white">View on Wikipedia</a>
+                            )}
+
+
+
+
+
+
+
+
+
+
+                        
                         </div>
                     </h5>
                 ) : ("Select genre to display further details")}

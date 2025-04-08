@@ -33,7 +33,14 @@ const ArtistDetails = ({ selectedArtist, onAddFavArtist }) => {
                             <b>YearOfBirth:</b> {selectedArtist.YearOfBirth}<br /><br />
                             <b>YearOfDeath:</b> {selectedArtist.YearOfDeath} <br /><br />
                             <b>Details:</b> {selectedArtist.Details}<br /><br />
-                            <b>ArtistLink:</b> {selectedArtist.ArtistLink} <br /><br />
+
+                            {/* If available then hyperlink, else N/A */}
+                            {selectedArtist.ArtistLink === "" ? (
+                                <div className="text-white"><b>View Artist On Wikipedia:</b> N/A</div>
+                            ) : (
+                                <a href={selectedArtist.ArtistLink} target="_blank" className="text-white">View Artist On Wikipedia</a>
+                            )} <br /><br />
+                           
                             <img src={"src/assets/artists/full/" + selectedArtist.ArtistID + ".jpg"} className="mx-auto w-36 h-auto"/>
                         </div>
                     </h5>
