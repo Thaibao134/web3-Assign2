@@ -4,7 +4,7 @@ import DisplayModal from './DisplayPaintingInformation.jsx';
 import Modal from 'react-bootstrap/Modal';
 
 
-function ModalPopup({ show, handleClose, painting, onAddFavPainting }) {
+function ModalPopup({ show, handleClose, painting, onAddFavPainting, handleAddToFavourites }) {
   return (
     <>
       <Modal show={show} onHide={handleClose} size="xl">
@@ -16,7 +16,7 @@ function ModalPopup({ show, handleClose, painting, onAddFavPainting }) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}> Close </Button>
-          <Button variant="primary" onClick={() => { onAddFavPainting(painting.Title), handleClose() }}>Add To Favourites </Button>
+          <Button variant="primary" onClick={() => { onAddFavPainting(painting.Title), handleAddToFavourites(), handleClose() }}>Add To Favourites </Button>
         </Modal.Footer>
       </Modal>
     </>

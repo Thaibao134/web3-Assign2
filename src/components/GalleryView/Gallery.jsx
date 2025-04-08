@@ -15,6 +15,16 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
     const [selectedGallery, setSelectedGallery] = useState(null);
     const [galleryPaintings, setGalleryPaintings] = useState([])
     const [filterOption, setFilterOption] = useState("Title");
+    const [FavouritePopup, setFavouritePopup] = useState(false)
+
+    const handleAddToFavourites = () => {
+        setFavouritePopup(true);
+
+        setTimeout(() => {
+            setFavouritePopup(false);
+        }, 2000);
+    };
+
 
     //When entering page, pull up entire galleries List
     useEffect(() => {
@@ -105,10 +115,17 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
                 <div className="flex h-screen m-16 ">
                     <GalleryList galleries={galleries} onSelectedGallery={onSelectedGallery} />
                     <GalleryDetails selectedGallery={selectedGallery} onAddFavGallery={onAddFavGallery} />
-                    <PaintingList Paintings={galleryPaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} onAddFavPainting={onAddFavPainting} />
+                    <PaintingList Paintings={galleryPaintings} filterOption={filterOption} handleFilterChange={handleFilterChange} 
+                    onAddFavPainting={onAddFavPainting} handleAddToFavourites={handleAddToFavourites} />
                 </div>
             </div>
 
+            {FavouritePopup && (
+                    <div className="popup-message">
+                        Added to Favourites!
+                    </div>
+                )}
+                
             <Footer />
         </>
     )

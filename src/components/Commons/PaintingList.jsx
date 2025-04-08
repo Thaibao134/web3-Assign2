@@ -2,7 +2,7 @@ import ModalPopup from "../Modals/DisplayPaintingModal"
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFavPainting}) => { 
+const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFavPainting, handleAddToFavourites}) => { 
 
     const [showModal, setShowModal] = useState(false);
     const [selectedPainting, setSelectedPainting] = useState(null);
@@ -69,7 +69,7 @@ const PaintingList = ({view, Paintings,filterOption,handleFilterChange, onAddFav
                     ))}
                 </div>
     
-                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting}  />}
+                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting} handleAddToFavourites={handleAddToFavourites}  />}
 
             </div>
         </div>

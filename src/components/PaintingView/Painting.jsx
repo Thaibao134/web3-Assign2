@@ -9,7 +9,15 @@ const Paintings = ({onAddFavPainting}) => {
 
     const [data, setData] = useState([]); //contains all paintings
     const [showModal, setShowModal] = useState(false);
+    const [FavouritePopup, setFavouritePopup] = useState(false)
 
+    const handleAddToFavourites = () => {
+        setFavouritePopup(true);
+
+        setTimeout(() => {
+            setFavouritePopup(false);
+        }, 2000);
+    };
 
     // If a painting has been clicked, then set the painting and show popup
     const [selectedPainting, setSelectedPainting] = useState(null);
@@ -208,10 +216,17 @@ const Paintings = ({onAddFavPainting}) => {
                     </div>
                 </h1>
 
-                {/* Popup when a painting has been clicked */}
-                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} onAddFavPainting={onAddFavPainting} />}
+                {showModal && <ModalPopup show={showModal} handleClose={() => setShowModal(false)} painting={selectedPainting} 
+                onAddFavPainting={onAddFavPainting} handleAddToFavourites={handleAddToFavourites}/>}
 
             </div>
+
+            {FavouritePopup && (
+                    <div className="popup-message">
+                        Added to Favourites!
+                    </div>
+                )}
+
             <Footer />
         </>
 

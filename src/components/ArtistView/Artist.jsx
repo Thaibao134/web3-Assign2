@@ -18,6 +18,15 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
     const [selectedArtist, setSelectedArtist] = useState(null);
     const [artistPaintings, setArtistPaintings] = useState([]);
     const [filterOption, setFilterOption] = useState("Title");
+    const [FavouritePopup, setFavouritePopup] = useState(false)
+
+    const handleAddToFavourites = () => {
+        setFavouritePopup(true);
+
+        setTimeout(() => {
+            setFavouritePopup(false);
+        }, 2000);
+    };
 
 
     //When entering page, pull up entire artist List
@@ -109,9 +118,15 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
                     <ArtistList artists={artist} onSelectedArtist={onSelectedArtist}/>
                     <ArtistDetails selectedArtist={selectedArtist} onAddFavArtist={onAddFavArtist}/>
                     <PaintingList view="Artist" Paintings={artistPaintings } filterOption={filterOption} handleFilterChange={handleFilterChange} 
-                    onAddFavPainting={onAddFavPainting}/>
+                    onAddFavPainting={onAddFavPainting} handleAddToFavourites={handleAddToFavourites}/>
                 </div>
             </div>
+
+            {FavouritePopup && (
+                    <div className="popup-message">
+                        Added to Favourites!
+                    </div>
+                )}
 
             <Footer/>
         </>
