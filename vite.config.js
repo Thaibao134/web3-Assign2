@@ -6,8 +6,8 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    proxy: {
-      '/api': 'https://web3-assignment1.onrender.com',
-    },
+    // proxy: {
+    //   '/api': 'https://web3-assignment1.onrender.com',
+    // },
   },
 })

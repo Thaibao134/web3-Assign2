@@ -92,7 +92,7 @@ const Paintings = ({onAddFavPainting}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("/api/paintings");
+                const response = await fetch("https://web3-assignment1.onrender.com/api/paintings");
                 const data = await response.json();
 
                 const PaintingData = data.map((item) => {

@@ -38,7 +38,7 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
                 setGalleries(JSON.parse(storedGalleries));
             } else {
                 try {
-                    const response = await fetch("/api/galleries");
+                    const response = await fetch("https://web3-assignment1.onrender.com/api/galleries");
                     const data = await response.json();
 
                     const GalleriesData = data.map((item) => ({
@@ -90,7 +90,7 @@ const Gallery = ({onAddFavGallery, onAddFavPainting}) => {
             setGalleryPaintings(JSON.parse(storedPaintings));
         } else {
             try {
-                const response = await fetch(`/api/paintings/galleries/${GalleryId}`);
+                const response = await fetch(`https://web3-assignment1.onrender.com/api/paintings/galleries/${GalleryId}`);
                 const data = await response.json();
 
                 const galleryPaintings = data.map((item) => {

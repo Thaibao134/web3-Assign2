@@ -43,7 +43,7 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
                 setLoading(false)
             } else {
                 try {
-                    const response = await fetch("/api/artists");
+                    const response = await fetch("https://web3-assignment1.onrender.com/api/artists");
                     const data = await response.json();
 
                     const ArtistData = data.map((item) => ({
@@ -94,7 +94,7 @@ const Artist = ({onAddFavArtist, onAddFavPainting}) => {
             setArtistPaintings(JSON.parse(storedPaintings));
         } else {
             try {
-                const response = await fetch(`/api/paintings/artist/${artistId}`);
+                const response = await fetch(`https://web3-assignment1.onrender.com/api/paintings/artist/${artistId}`);
                 const data = await response.json();
 
                 //parse string TO json

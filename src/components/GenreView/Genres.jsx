@@ -40,7 +40,7 @@ const Genres = ({onAddFavPainting}) => {
         } else {
 
                 try {
-                    const response = await fetch("/api/genres");
+                    const response = await fetch("https://web3-assignment1.onrender.com/api/genres");
                     const data = await response.json();
 
                     const GenreData = data.map((item) => ({
@@ -87,7 +87,7 @@ const Genres = ({onAddFavPainting}) => {
             setGenresPaintings(JSON.parse(storedPaintings));
         } else {
             try {
-                const response = await fetch(`/api/paintings/genre/${genreId}`);
+                const response = await fetch(`https://web3-assignment1.onrender.com/api/paintings/genre/${genreId}`);
                 const data = await response.json();
 
                 const PaintingData = data.map((item) => {
