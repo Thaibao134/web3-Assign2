@@ -21,17 +21,4 @@ export default defineConfig({
       '/api': 'https://web3-assignment1.onrender.com',
     },
   },
-
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'), // Make sure this points to the correct path for your index.html
-      },
-    },
-  },
-
-  // Optional: If your assets are located in `src/assets`, you can specify how to handle them
-  assetsInclude: ['src/assets/**', 'src/components/**'], // Ensure your components and assets are bundled
-
-
 })
